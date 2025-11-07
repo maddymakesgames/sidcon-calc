@@ -1,0 +1,342 @@
+{
+    "factions": [
+        {
+            "name": "Caylion Plutocracy",
+            "id": "base-caylion"
+        },
+        {
+            "name": "Caylion Collaborative",
+            "id": "alt-caylion"
+        },
+        {
+            "name": "Eni Et Ascendancy",
+            "id": "base-eniet"
+        },
+        {
+            "name": "Eni Et Engineers",
+            "id": "alt-eniet"
+        },
+        {
+            "name": "Faderan Conclave",
+            "id": "base-faderan"
+        },
+        {
+            "name": "Society of Falling Light",
+            "id": "alt-faderan"
+        },
+        {
+            "name": "Im'Dril Nomads",
+            "id": "base-imdril"
+        },
+        {
+            "name": "Im'Dril Grand Fleet",
+            "id": "alt-imdril"
+        },
+        {
+            "name": "Kjasjavikalimm Directorate",
+            "id": "base-kjas"
+        },
+        {
+            "name": "Kjasjavikalimm Independant Nations",
+            "id": "alt-kjas"
+        },
+        {
+            "name": "Kt'Zr'Kt'Rtl Adhocracy",
+            "id": "base-kit"
+        },
+        {
+            "name": "Kt'Zr'Kt'Rtl Technophiles",
+            "id": "alt-kit"
+        },
+        {
+            "name": "Unity",
+            "id": "base-unity"
+        },
+        {
+            "name": "Deep Unity",
+            "id": "alt-unity"
+        },
+        {
+            "name": "Yengii Society",
+            "id": "base-yengii"
+        },
+        {
+            "name": "Yengii Jii",
+            "id": "alt-yengii"
+        },
+        {
+            "name": "Zeth Anocracy",
+            "id": "base-zeth"
+        },
+        {
+            "name": "Charity Syndicate",
+            "id": "alt-zeth"
+        }
+    ],
+    "tech-cards": {
+        "1at": ["Atomic Transmutation", "Pseudomaterials", "1U"],
+        "1ci": ["Clinical Immortality", "Practical Immortality", "2C"],
+        "1ge": ["Genetic Engineering", "Genetic Resynthesis", "3g"],
+        "1nt": ["Nanotechnology", "Nanofabricators", "3b"],
+        "1qc": ["Quantum Computers", "Nondeterministic Polynomial Collapse", "2K"],
+        "1ur": ["Ubiquitous Cultural Repository", "Memetic Lifeforms", "2Y"],
+        "1ut": ["Universal Translator", "Universal Empathetic Communication", "3w"],
+        "2aa": ["Achronal Analysis", "Time Viewers", "3K"],
+        "2ap": ["Antimatter Power", "Antimatter Compounds", "4b"],
+        "2cs": ["Cross Species Ethical Equality", "Concrete Universal Metaethics", "4w"],
+        "2hm": ["Hyperspace Mining", "Hyperspace Settlements", "3Y"],
+        "2is": ["Interspecies Medical Exchange", "Panbiologic Medicine", "4g"],
+        "2oc": ["Organic Construction", "Living Infrastructure", "3C"],
+        "2sc": ["Singularity Control", "Wormhole Grid", "2U"],
+        "3gt": ["Galactic Telecomm Control", "Galactic Domination", "4K"],
+        "3mg": ["Matter Generation", "Macroscale Teleportation", "4Y"],
+        "3ms": ["Megastructures", "Dyson Swarms", "3U"],
+        "3ps": ["Poly Species Corporations", "Full Interspecies Integration", "5g"],
+        "3se": ["Social Exodus", "Galactic Colonization", "5w"],
+        "3td": ["Temporal Dilation", "Stasis Field", "4C"],
+        "3xc": ["Xeno Cultural Exchange", "Multispecies Hybrid Cultures", "5b"]
+    },
+    "races": {
+        "caylion": {
+            "upgrade-inputs": {},
+            "outputs": {
+                "1at": ["1Y1C1b", "1C"],
+                "1ci": ["1V1w", "1Y"],
+                "1ge": ["1Y1K1b", "1Y"],
+                "1nt": ["1U1g", "1Y"],
+                "1qc": ["1C1Y1g", "1Y"],
+                "1ur": ["1V1g", "1K"],
+                "1ut": ["1VD1K", "D1w1b"],
+                "2aa": ["1U1Y1w1b", "1w1C"],
+                "2ap": ["2Y1K1w", "1g1w"],
+                "2cs": ["1VD1V1b", "1U"],
+                "2hm": ["1U1KD2Y", "1w1b1K"],
+                "2is": ["1V1wD1g1b", "1b1Y"],
+                "2oc": ["2s1w2b1g", "1Y"],
+                "2sc": ["1s1Y2C1w1g1b", "2b"],
+                "3gt": ["3V2b1w", "1V1Y"],
+                "3mg": ["2V1U1C1w1b", "1V1b"],
+                "3ms": ["5V1w1b", "1V1C"],
+                "3ps": ["2s1V2YD3b1g", "1VD1w"],
+                "3se": ["2s1V1KD2s1V1Y1C", "1VD1b"],
+                "3td": ["2V1U1w2g", "1VD1U"],
+                "3xc": ["1K3w1g1VD1V", "1VD1K1w"]
+            }
+        },
+        "eniet": {
+            "upgrade-inputs": {},
+            "outputs":{
+                    "1at": ["1K1C1b", "1Y"],
+                    "1ci": ["1V1b", "1K"],
+                    "1ge": ["1Y1K1b", "1K"],
+                    "1nt": ["1U1w", "1C"],
+                    "1qc": ["2Y1g", "1Y"],
+                    "1ur": ["1V1g", "1K"],
+                    "1ut": ["1VD1K", "D1g1b"],
+                    "2aa": ["1U1Y1w1b", "1b1Y"],
+                    "2ap": ["2Y1K1w", "2g"],
+                    "2cs": ["1VD1V1b", "1U"],
+                    "2hm": ["1U1KD1C1K", "1g1b1K"],
+                    "2is": ["1V1wD1g1b", "1b1Y"],
+                    "2oc": ["2s2g2b", "1K"],
+                    "2sc": ["1s1C1K1Y1b2g", "1w1b"],
+                    "3gt": ["3V1w1g1b", "1V1C"],
+                    "3mg": ["2V1U1K1w1b", "1V1g"],
+                    "3ms": ["5V1g1b", "1V1K"],
+                    "3ps": ["2s1V1Y1CD2b2g", "1VD1b"],
+                    "3se": ["2s1V1KD2s1V1Y1K", "1VD1b"],
+                    "3td": ["2V1U1g2b", "1VD1U"],
+                    "3xc": ["1V1Y2w2gD1V", "1VD1Y1g"]
+            }
+        },
+        "faderan": {
+            "upgrade-inputs": {},
+            "outputs": {
+                "1at": ["1C1Y1b", "1C"],
+                "1ci": ["1V1g", "1K"],
+                "1ge": ["1C1K1w", "1C"],
+                "1nt": ["1U1g", "1Y"],
+                "1qc": ["1C1Y1b", "1Y"],
+                "1ur": ["1V1w", "1K"],
+                "1ut": ["1VD1K", "D1w1b"],
+                "2aa": ["1U1C1b1w", "1Y1w"],
+                "2ap": ["2Y1C1g", "1g1w"],
+                "2cs": ["1VD1V1w", "1U"],
+                "2hm": ["1U1KD1Y1K", "1K2b"],
+                "2is": ["1V1bD2g", "1C1w"],
+                "2oc": ["2s1w2b1g", "1Y"],
+                "2sc": ["1s1C2K1w1g1b", "2g"],
+                "3gt": ["3V2w1g", "1V1Y"],
+                "3mg": ["2V1U1C1g1b", "1V1b"],
+                "3ms": ["5V1w1b", "1V1K"],
+                "3ps": ["2s1V1Y1KD2b1g1w", "1VD1w"],
+                "3se": ["2s1V1YD2s1V1Y1C", "1VD1g"],
+                "3td": ["2V1U1g2b", "1VD1U"],
+                "3xc": ["1V1K2w2gD1V", "1VD1C1w"]
+            }
+        },
+        "imdril": {
+            "upgrade-inputs": {},
+            "outputs": {
+                "1at": ["1Y1K1g", "1Y"],
+                "1ci": ["1V1w", "1Y"],
+                "1ge": ["1C1Y1w", "1C"],
+                "1nt": ["1U1g", "1Y"],
+                "1qc": ["1C1Y1b", "1C"],
+                "1ur": ["1V1w", "1K"],
+                "1ut": ["1VD1c", "D1w1g"],
+                "2aa": ["1U1C1w1g", "1C1g"],
+                "2ap": ["2Y1K1g", "1w1g"],
+                "2cs": ["1VD1V1w", "1U"],
+                "2hm": ["1U1CD1Y1C", "1Y1g1b"],
+                "2is": ["1V1wD1w1g", "1C1w"],
+                "2oc": ["2s1w1b2g", "1Y"],
+                "2sc": ["1s1C1Y1K1g2b", "1w1g"],
+                "3gt": ["3V1b1g1w", "1V1Y"],
+                "3mg": ["2V1U1C1w1b", "1V1b"],
+                "3ms": ["5V1g1b", "1V1C"],
+                "3ps": ["2s1V1Y1CD2w1b1g", "1VD1w"],
+                "3se": ["2s1V1YD2s1V1Y1C", "1VD1b"],
+                "3td": ["2V1U1w2g", "1VD1U"],
+                "3xc": ["1V1K2w2gD1V", "1VD1K1w"]
+            }
+        },
+        "kjas": {
+            "upgrade-inputs": {},
+            "outputs": {
+                "1at": ["1Y1K1b", "1C"],
+                "1ci": ["1V1g", "1K"],
+                "1ge": ["1C1K1w", "1K"],
+                "1nt": ["1U1g", "1K"],
+                "1qc": ["1C1Y1w", "1Y"],
+                "1ur": ["1V1g", "1K"],
+                "1ut": ["1VD1K", "D1w1g"],
+                "2aa": ["1U1C1w1b", "1Y1g"],
+                "2ap": ["2K1Y1w", "1w1g"],
+                "2cs": ["1VD1V1w", "1U"],
+                "2hm": ["1U1KD2K", "1C1w1g"],
+                "2is": ["1V1wD2g", "1K1w"],
+                "2oc": ["2s1w1b2g", "1K"],
+                "2sc": ["1s1K1Y1C2w1b", "1b1w"],
+                "3gt": ["3V2b1w", "1V1C"],
+                "3mg": ["2V1U1C1w1b", "1V1b"],
+                "3ms": ["5V1w1g", "1V1Y"],
+                "3ps": ["2s1V2YD1b1g2w", "1VD1b"],
+                "3se": ["2s1V1CD2s1V1C1K", "1VD1g"],
+                "3td": ["2V1U2g1w", "1VD1U"],
+                "3xc": ["1V1K1w3gD1V", "1VD1K1b"]
+            }
+        },
+        "kit": {
+            "upgrade-inputs": {},
+            "outputs": {
+                "1at": ["2K1g", "1Y"],
+                "1ci": ["1V1b", "1K"],
+                "1ge": ["1K1C1b", "1K"],
+                "1nt": ["1U1w", "1K"],
+                "1qc": ["1C1Y1w", "1C"],
+                "1ur": ["1VD1C", "D1w1b"],
+                "1ut": ["1V1b", "1C"],
+                "2aa": ["1U1C1w1g", "1C1b"],
+                "2ap": ["2K1C1w", "1g1w"],
+                "2cs": ["1VD1V1b", "1U"],
+                "2hm": ["1U1CD1C1K", "1K2w"],
+                "2is": ["1V1wD2b", "1C1b"],
+                "2oc": ["2s2w1b1g", "1K"],
+                "2sc": ["1s2Y1K1w1g1b", "1w1b"],
+                "3gt": ["3V2b1g", "1V1Y"],
+                "3mg": ["2V1U1K2w", "1V1w"],
+                "3ms": ["5V2b", "1V1C"],
+                "3ps": ["2s1V1Y1CD3w1b", "1VD1w"],
+                "3se": ["2s1V1KD2s1V1K1C", "1VD1b"],
+                "3td": ["2V1U1w2b", "1VD1U"],
+                "3xc": ["1V1C1w3gD1V", "1VD1K1b"]
+            }
+        },
+        "unity": {
+            "upgrade-inputs": {
+                "1ci": "2X-2C",
+                "1ge": "3x-3g",
+                "1nt": "3x-3b",
+                "1qc": "2X-2K",
+                "1ur": "2X-2Y",
+                "1ut": "3x-3w"
+            },
+            "outputs": {
+                "1at": ["1K1C1b", "1x"],
+                "1ci": ["1V1w", "1x"],
+                "1ge": ["1Y1K1b", "1x"],
+                "1nt": ["1U1w", "1x"],
+                "1qc": ["1C1Y1g", "1x"],
+                "1ur": ["1V1b", "1x"],
+                "1ut": ["1VD1K", "D1X"],
+                "2aa": ["1U1C2g", "2x"],
+                "2ap": ["2Y1C1g", "1X"],
+                "2cs": ["1VD1V1w", "1x1X"],
+                "2hm": ["1U1CD2K", "2X"],
+                "2is": ["1V1wD2b", "2x"],
+                "2oc": ["2s2w1b1g", "1X"],
+                "2sc": ["1s1Y2K1w1g1b", "1X"],
+                "3gt": ["3V1b2g", "1V1C"],
+                "3mg": ["2V1U1K1w1b", "1V1b"],
+                "3ms": ["5V1w1b", "1V1Y"],
+                "3ps": ["2s1V1Y1KD1b2g1w", "1VD1g"],
+                "3se": ["2s1V1KD2s1V1Y1C", "1VD1g"],
+                "3td": ["2V1U1w2b", "1VD1U"],
+                "3xc": ["1V1C2w2gD1V", "1VD1K1w"]
+            }
+        },
+        "yengii": {
+            "upgrade-inputs": {},
+            "outputs":{
+                "1at": ["1Y1K1b", "1C"],
+                "1ci": ["1V1g", "1K"],
+                "1ge": ["1Y1K1w", "1Y"],
+                "1nt": ["1U1g", "1C"],
+                "1qc": ["1C1Y1b", "1Y"],
+                "1ur": ["1V1w", "1C"],
+                "1ut": ["1VD1C", "D1w1g"],
+                "2aa": ["1U1Y1w1g", "1C1g"],
+                "2ap": ["1Y1K1C1g", "1g1w"],
+                "2cs": ["1VD1V1g", "1U"],
+                "2hm": ["1U1CD1Y1C", "1K2b"],
+                "2is": ["1V1wD1w1b", "1C1b"],
+                "2oc": ["2s1w1b2g", "1Y"],
+                "2sc": ["1s2K1Y1w2b", "1w1g"],
+                "3gt": ["3V2b1w", "1V1Y"],
+                "3mg": ["2V1U1C1g1b", "1V1w"],
+                "3ms": ["5V1g1b", "1V1K"],
+                "3ps": ["2s1V1Y1CD2g1b1w", "1VD1w"],
+                "3se": ["2s1V1KD2s1V1K1C", "1VD1b"],
+                "3td": ["2V1U1b2w", "1VD1U"],
+                "3xc": ["1V1Y2w2gD1V", "1VD1C1g"]
+            }
+        },
+        "zeth": {
+            "upgrade-inputs": {},
+            "outputs":{
+                "1at": ["1Y1K1b", "1C"],
+                "1ci": ["1V1g", "1K"],
+                "1ge": ["1C1Y1b", "1C"],
+                "1nt": ["1U1g", "1C"],
+                "1qc": ["2C1w", "1Y"],
+                "1ur": ["1V1g", "1C"],
+                "1ut": ["1VD1K", "D1g1b"],
+                "2aa": ["1U1C1w1b", "1C1b"],
+                "2ap": ["2C1Y1w", "2g"],
+                "2cs": ["1VD1V1g", "1U"],
+                "2hm": ["1U1CD1C1K", "1K1w1b"],
+                "2is": ["1V1wD1g1b", "1C1b"],
+                "2oc": ["2s2g2b", "1Y"],
+                "2sc": ["1s1Y1C1K1g2b", "1w1b"],
+                "3gt": ["3V1b2g", "1V1C"],
+                "3mg": ["2V1U1K2b", "1V1g"],
+                "3ms": ["5V1g1b", "1V1Y"],
+                "3ps": ["2s1V1Y1CD2b1g1w", "1VD1b"],
+                "3se": ["2s1V1CD2s1V1Y1K", "1VD1g"],
+                "3td": ["2V1U1b2w", "1VD1U"],
+                "3xc": ["1V1C1w3gD1V", "1VD1K1w"]
+            }
+        }
+    }
+}

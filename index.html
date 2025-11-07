@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+        <title>Sidereal Confluence Calculator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="meta-holder">
+            <div>
+                Faction:
+                <select id="faction-select">
+                </select>
+            </div>
+            <div>
+                Current Turn:
+                <input id="turn-input" type="number" value=0 />
+            </div>
+            <div>
+                Player Count:
+                <input id="player-input" type="number" value=0 />
+            </div>
+        </div>
+        <div class="card-container" id="card-container">
+        </div>
+        <div class="top-container">
+            <div class="cube-input-holder">
+                <div class="input-row">
+                    <div class="cube-input">
+                        White: <input id="white-input" type="number" value=0/>
+                    </div>
+                    <div class="cube-input">
+                        Brown: <input id="brown-input" type="number" value=0/>
+                    </div>
+                    <div class="cube-input">
+                        Green: <input id="green-input" type="number" value=0/>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="cube-input">
+                        Black: <input id="black-input" type="number" value=0/>
+                    </div>
+                    <div class="cube-input">
+                        Blue: <input id="blue-input" type="number" value=0/>
+                    </div>
+                    <div class="cube-input">
+                        Yellow: <input id="yellow-input" type="number" value=0/>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="cube-input">
+                        Ultratech: <input id="ultratech-input" type="number" value=0/>
+                    </div>
+                    <div class="cube-input">
+                        Ships: <input id="ships-input" type="number" value=0/>
+                    </div>
+                    <div class="cube-input">
+                        VP: <input id="vp-input" type="number" value=0/>
+                    </div>
+                </div>
+                <div class="input-row">
+                    Final Score:
+                    <span id="score"></span>
+                </div>
+                <div class="input-row">
+                    <div class="cube-input-holder">
+                        <span>Next Turn Resources:</span>
+                        <span id="nt-smalls"></span>
+                        <span id="nt-larges"></span>
+                        <span id="nt-other"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="index.js"></script>
+    </body>
+</html>
