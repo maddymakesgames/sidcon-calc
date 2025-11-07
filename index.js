@@ -64,7 +64,7 @@ function calculate_score(totals) {
 
     vp += Math.floor(partials / 12);
     partials = partials % 12;
-    
+
     return {
         vp: vp,
         partial: partials
@@ -76,12 +76,12 @@ let active_cards = {};
 function converter_to_totals(data, upgraded) {
     let outputs = upgraded ? data.upgrade_output : data.output;
     return add_totals(outputs.owned, outputs.donations);
-} 
+}
 
 function generate_card_totals() {
     let totals = {}
-    for(let card of active_cards) {
-        if(card.running) {
+    for (let card of Object.values(active_cards)) {
+        if (card.running) {
             totals = add_totals(totals, converter_to_totals(card.data, card.upgraded));
         }
     }
@@ -114,7 +114,7 @@ function update_score() {
 }
 
 function create_faction_options() {
-    for(let faction of Object.values(data)) {
+    for (let faction of Object.values(data)) {
         let option = document.createElement("option");
         option.value = faction.id;
         option.innerText = faction.name;
@@ -123,8 +123,8 @@ function create_faction_options() {
 }
 
 function isEmptyObject(obj) {
-    for(const prop in obj) {
-        if(Object.hasOwn(obj, prop)) {
+    for (const prop in obj) {
+        if (Object.hasOwn(obj, prop)) {
             return false;
         }
     }
@@ -150,14 +150,14 @@ function format_resources(res) {
         ships: 'Ships',
     };
 
-    if(!isEmptyObject(res.owned)) {
+    if (!isEmptyObject(res.owned)) {
         output += Object.entries(res.owned).map(([key, value]) => {
             return `${value} ${names[key]}`;
         }).join(', ');
     }
 
-    if(!isEmptyObject(res.donations)) {
-        if(output != '') {
+    if (!isEmptyObject(res.donations)) {
+        if (output != '') {
             output += ' + ';
         }
         output += Object.entries(res.donations).map(([key, value]) => {
@@ -203,11 +203,11 @@ function toggle_upgrade(i) {
     c_upgrade.innerText = u_state ? "Downgrade" : "Upgrade";
     c_name.innerText = u_state ? data.upgrade_name : data.name;
     c_display.innerHTML = converter(
-        u_state ? data.upgrade_input : data.input, 
+        u_state ? data.upgrade_input : data.input,
         u_state ? data.upgrade_output : data.output
     );
 
-    if(active_cards[i].running) {
+    if (active_cards[i].running) {
         update_score();
     }
 }
@@ -219,7 +219,7 @@ function toggle_card(i) {
     let c_toggle = document.getElementById(`toggle-${i}`);
     let c = document.getElementById(`card-${i}`);
     c_toggle.innerText = r_state ? "Unmark Running" : "Mark Running";
-    if(r_state) {
+    if (r_state) {
         c.classList.add('running');
     } else {
         c.classList.remove('running');
@@ -229,16 +229,16 @@ function toggle_card(i) {
 
 function create_faction_converters() {
     let curr_faction = faction_select.value;
-    card_container.innerHTML = ''; 
-    if(data[curr_faction].tech_cards) {
+    card_container.innerHTML = '';
+    if (data[curr_faction].tech_cards) {
         let i = 0;
-        for(let [id, card_data] of Object.entries(data[curr_faction].tech_cards)) {
+        for (let [id, card_data] of Object.entries(data[curr_faction].tech_cards)) {
             let card_element = document.createElement('div');
             card_element.className = 'card';
             card_element.innerHTML = card(id, card_data.name, card_data.input, card_data.output);
             card_element.id = `card-${id}`;
             card_container.appendChild(card_element);
-            
+
             let upgrade_button = document.getElementById(`upgrade-${id}`);
             upgrade_button.onclick = toggle_upgrade.bind(null, id);
             let toggle_button = document.getElementById(`toggle-${id}`);
