@@ -1,0 +1,70 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "factions": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "unique-cards": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "upgrade-name": {
+                                    "type": "string"
+                                },
+                                "converters": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "inputs": {
+                                                "type": "string"
+                                            },
+                                            "upgrade-inputs": {
+                                                "type": "string"
+                                            },
+                                            "outputs": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "maxItems": 2,
+                                                "minItems": 2
+                                            }
+                                        }
+                                    }
+                                },
+                                "upgrade-converters": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "inputs": {
+                                                "type": "string"
+                                            },
+                                            "outputs": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
