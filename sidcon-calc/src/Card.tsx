@@ -1,0 +1,33 @@
+import { useState } from 'react';
+import Resources from './Resources.tsx';
+
+function Card({cardId, card, converter_idx, footerGenerator}) {
+    let [upgraded, setUpgraded] = useState(false);
+    
+    let converter = card.converters[converter_idx];
+    let input = upgraded ? converter.upgrade_input : converter.input;
+    let output = upgraded ? converter.upgrade_output : converter.output;
+
+    let footer = footerGenerator(cardId, upgraded, setUpgraded);
+
+    return <>
+        <div className="col">
+            <div className="col card converter text-center" data-faction={card.faction}>
+                <div className="card-header">
+                    <span className="converter-name">{card.name}</span>
+                </div>
+                <div className="card-body">
+                    <span className="converter-inputs">
+                        <Resources resources={input} />
+                    </span>
+                    <span className="converter-outputs">
+                        <Resources resources={output} />
+                    </span>
+                </div>
+                {footer}
+            </div>
+        </div>
+    </>;
+}
+
+export default Card;
