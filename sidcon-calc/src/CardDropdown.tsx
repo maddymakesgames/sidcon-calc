@@ -1,15 +1,17 @@
 import Card from './Card.tsx';
+import { RunningFooterGenerator } from './RunningFooter.tsx';
 
 
-function CardDropdown({label, setRunningConverters, cards}) {
+function CardDropdown({label, runningConverters, setRunningConverters, cards}) {
 
     const collapse_id = `card-dropdown-${label.replace(' ', '-')}`;
     const bs_target = '#' + collapse_id;
     const aria_controls = `collapse-card-dropdown-${label}`;
 
+    let footer_generator = RunningFooterGenerator(runningConverters, setRunningConverters);
     let card_elements = cards.flatMap(([id, card]) => {
         return card.converters.map((_converter, idx) => {
-            return <Card key={id} cardId={id} card={card} converter_idx={idx} footerGenerator={(a, b, c) => {}} />;
+            return <Card key={id} cardId={id} card={card} converter_idx={idx} footerGenerator={footer_generator} />;
         });
     }); 
 

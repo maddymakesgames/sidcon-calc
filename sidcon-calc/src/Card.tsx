@@ -8,7 +8,7 @@ function Card({cardId, card, converter_idx, footerGenerator}) {
     let input = upgraded ? converter.upgrade_input : converter.input;
     let output = upgraded ? converter.upgrade_output : converter.output;
 
-    let footer = footerGenerator(cardId, upgraded, setUpgraded);
+    let footer = footerGenerator(cardId, converter, upgraded, setUpgraded);
 
     return <>
         <div className="col">
@@ -20,6 +20,7 @@ function Card({cardId, card, converter_idx, footerGenerator}) {
                     <span className="converter-inputs">
                         <Resources resources={input} />
                     </span>
+                    <img class="converter-arrow" src="assets/icons/white_arrow.png" alt="arrow" />
                     <span className="converter-outputs">
                         <Resources resources={output} />
                     </span>

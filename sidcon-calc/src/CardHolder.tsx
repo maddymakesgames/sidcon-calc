@@ -1,6 +1,6 @@
 import CardDropdown from './CardDropdown.tsx';
 
-function CardHolder({currFaction, ownedCards, setRunningConverters}) {
+function CardHolder({currFaction, ownedCards, runningConverters, setRunningConverters}) {
 
     let cardEras = [[], [], [], [], []];
     for(let [id, card] of Object.entries(ownedCards)) {
@@ -17,11 +17,11 @@ function CardHolder({currFaction, ownedCards, setRunningConverters}) {
 
     return <>
         <div className="container px-4" id="card-dropdown-container">
-            <CardDropdown label="Starting" setRunningConverters={setRunningConverters} cards={cardEras[0]} />
-            <CardDropdown label="Tier 1" setRunningConverters={setRunningConverters} cards={cardEras[1]} />
-            <CardDropdown label="Tier 2" setRunningConverters={setRunningConverters} cards={cardEras[2]} />
-            <CardDropdown label="Tier 3" setRunningConverters={setRunningConverters} cards={cardEras[3]} />
-            <CardDropdown label="Misc" setRunningConverters={setRunningConverters} cards={cardEras[4]} />
+            <CardDropdown label="Starting" runningConverters={runningConverters} setRunningConverters={setRunningConverters} cards={cardEras[0]} />
+            <CardDropdown label="Tier 1" runningConverters={runningConverters} setRunningConverters={setRunningConverters} cards={cardEras[1]} />
+            <CardDropdown label="Tier 2" runningConverters={runningConverters} setRunningConverters={setRunningConverters} cards={cardEras[2]} />
+            <CardDropdown label="Tier 3" runningConverters={runningConverters} setRunningConverters={setRunningConverters} cards={cardEras[3]} />
+            <CardDropdown label="Misc" runningConverters={runningConverters} setRunningConverters={setRunningConverters} cards={cardEras[4]} />
         </div>
     </>;
 }
