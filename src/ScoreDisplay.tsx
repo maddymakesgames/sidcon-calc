@@ -4,8 +4,8 @@ import { RESOURCES, countsToTotals } from './ResourceUtils.tsx';
 import { useState } from 'react';
 
 function calculateScore(total) {
-    let smalls = total.white + total.brown + total.green + total.wsmall + total.ships;
-    let larges = total.black + total.blue + total.yellow + total.wlarge;
+    const smalls = total.white + total.brown + total.green + total.wsmall + total.ships;
+    const larges = total.black + total.blue + total.yellow + total.wlarge;
     let vp = total.vp + Math.floor(smalls / 6) + Math.floor(larges / 4) + Math.floor(total.ultratech / 2);
     let partials = (smalls % 6) * 2 + (larges % 4) * 3 + (total.ultratech % 2) * 6;
 
@@ -82,10 +82,10 @@ function subTotals(t1, t2) {
 }
 
 function ScoreDisplay({ runningConverters }) {
-    let [resourceCounts, setCounts] = useState(new Array(RESOURCES.length).fill(0));
-    let countSetters = RESOURCES.map((_res, i) => {
+    const [resourceCounts, setCounts] = useState(new Array(RESOURCES.length).fill(0));
+    const countSetters = RESOURCES.map((_res, i) => {
         return (value) => {
-            let newRes = Array.from(resourceCounts);
+            const newRes = Array.from(resourceCounts);
             newRes[i] = value;
             setCounts(newRes);
         };
@@ -94,17 +94,17 @@ function ScoreDisplay({ runningConverters }) {
     let totals = emptyTotals();
     let net = emptyTotals();
 
-    let rotting = { owned: countsToTotals(resourceCounts), donations: {} };
+    const rotting = { owned: countsToTotals(resourceCounts), donations: {} };
 
     totals = addTotals(totals, rotting);
     net = addTotals(totals, rotting);
     
-    for(let convDetails of Object.values(runningConverters)) {
-        let converter = convDetails.converter;
-        let upgraded = convDetails.upgraded;
+    for(const convDetails of Object.values(runningConverters)) {
+        const converter = convDetails.converter;
+        const upgraded = convDetails.upgraded;
 
-        let outputs = upgraded ? converter.upgrade_output : converter.output;
-        let inputs = upgraded ? converter.upgrade_input : converter.input;
+        const outputs = upgraded ? converter.upgrade_output : converter.output;
+        const inputs = upgraded ? converter.upgrade_input : converter.input;
 
         console.log(totals);
         console.log(net);
@@ -116,15 +116,15 @@ function ScoreDisplay({ runningConverters }) {
     console.log(totals);
     console.log(net);
     
-    let score = calculateScore(totalCubes(totals));
+    const score = calculateScore(totalCubes(totals));
 
     RESOURCES.forEach((resource) => {
         if((totals.owned?.[resource] ?? 0) < 0) {
             totals.owned[resource] = 0;
         }
 
-        if((totals.donation?.[resouce] ?? 0) < 0) {
-            total.donations[resource] = 0;
+        if((totals.donations?.[resouce] ?? 0) < 0) {
+            totals.donations[resource] = 0;
         }
     })
 

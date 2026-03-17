@@ -2,13 +2,13 @@ import { useState } from 'react';
 import Resources from './Resources.tsx';
 
 function Card({cardId, card, converter_idx, footerGenerator}) {
-    let [upgraded, setUpgraded] = useState(false);
+    const [upgraded, setUpgraded] = useState(false);
     
-    let converter = card.converters[converter_idx];
-    let input = upgraded ? converter.upgrade_input : converter.input;
-    let output = upgraded ? converter.upgrade_output : converter.output;
+    const converter = card.converters[converter_idx];
+    const input = upgraded ? converter.upgrade_input : converter.input;
+    const output = upgraded ? converter.upgrade_output : converter.output;
 
-    let footer = footerGenerator(cardId, converter, upgraded, setUpgraded);
+    const footer = footerGenerator(cardId, converter, upgraded, setUpgraded);
 
     return <>
         <div className="col">

@@ -1,9 +1,8 @@
 import CardDropdown from './CardDropdown.tsx';
 
 function CardHolder({currFaction, ownedCards, runningConverters, setRunningConverters}) {
-
-    let cardEras = [[], [], [], [], []];
-    for(let [id, card] of Object.entries(ownedCards)) {
+    const cardEras = [[], [], [], [], []];
+    for(const [id, card] of Object.entries(ownedCards)) {
         if(card.owner != currFaction) {
             cardEras[3].push([id, card]);
         } else {

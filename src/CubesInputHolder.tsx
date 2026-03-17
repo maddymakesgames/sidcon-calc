@@ -1,5 +1,4 @@
 import CubeInput from './CubeInput.tsx';
-import { RESOURCES } from './ResourceUtils.tsx';
 
 function CubesInputHolder({resourceCounts, countSetters}) {
         return <form>

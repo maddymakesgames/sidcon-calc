@@ -5,12 +5,12 @@ import ScoreDisplay from './ScoreDisplay.tsx';
 import { useState } from 'react';
 
 function App() {
-    let starting_faction = Object.values(global.all_cards)[0];
-    let [currFaction, setFactionRaw] = useState(starting_faction.id);
-    let [ownedCards, setOwnedCards] = useState(starting_faction.starting_cards);
-    let [runningConverters, setRunningConverters] = useState({});
+    const starting_faction = Object.values(global.all_cards)[0];
+    const [currFaction, setFactionRaw] = useState(starting_faction.id);
+    const [ownedCards, setOwnedCards] = useState(starting_faction.starting_cards);
+    const [runningConverters, setRunningConverters] = useState({});
 
-    let setFaction = (faction) => {
+    const setFaction = (faction) => {
         setFactionRaw(faction);
         setOwnedCards(global.all_cards[faction].starting_cards);
     }

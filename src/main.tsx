@@ -7,24 +7,24 @@ import App from './App.tsx'
 global.all_cards = {};
 
 async function getData() {
-    let output = await fetch('./output.json');
+    const output = await fetch('./output.json');
     const temp = await output.json();
     // normalize 'all cards' so that data structure is the same between
     // unique/starting cards and tech cards
     global.all_cards = {};
-    for (let [faction_id, faction_data] of Object.entries(temp)) {
-        let data = faction_data;
+    for (const [faction_id, faction_data] of Object.entries(temp)) {
+        const data = faction_data;
 
         const unique_cards = ("unique_cards" in data) ? [...faction_data["unique_cards"]] : [];
         data["unique_cards"] = {};
-        for (var i = 0; i < unique_cards.length; i++) {
+        for (let i = 0; i < unique_cards.length; i++) {
             const unique_card_id = `unique${i}`;
             data["unique_cards"][unique_card_id] = unique_cards[i];
         }
 
         const starting_cards = ("starting_cards" in data) ? [...faction_data["starting_cards"]] : [];
         data["starting_cards"] = {};
-        for (var i = 0; i < starting_cards.length; i++) {
+        for (let i = 0; i < starting_cards.length; i++) {
             const starting_card_id = `starting${i}`;
             data["starting_cards"][starting_card_id] = starting_cards[i];
         }
@@ -32,8 +32,8 @@ async function getData() {
         const transpose_keys = ["input", "output", "upgrade_input", "upgrade_output"];
         const tech_cards = Object.entries(faction_data["tech_cards"])
         // data["tech_cards"] = {};
-        for (let [id, card] of tech_cards) {
-            let converter = {};
+        for (const [id, card] of tech_cards) {
+            const converter = {};
             for (const key of transpose_keys) {
                 converter[key] = card[key];
                 delete card[key];
@@ -45,12 +45,12 @@ async function getData() {
         global.all_cards[faction_id] = data;
     }
     // add properties to all converters
-    for (let [faction_id, faction_data] of Object.entries(global.all_cards)) {
+    for (const [faction_id, faction_data] of Object.entries(global.all_cards)) {
         for (const key of ["tech_cards", "unique_cards", "starting_cards"]) {
             if (!(key in faction_data)) {
                 continue;
             }
-            for (let [id, card] of Object.entries(faction_data[key])) {
+            for (const [id, card] of Object.entries(faction_data[key])) {
                 card["upgraded"] = false;
                 let era;
                 if(key == "unique_cards" || key == "starting_cards") {

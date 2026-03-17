@@ -12,13 +12,13 @@ export function RunningFooterGenerator(runningConverters, setRunningConverters) 
 }
 
 function RunningFooter({cardID, converter, upgraded, setUpgraded, runningConverters, setRunningConverters}) {
-    let [running, setRunning] = useState(false);
-    let runningText = running ? "Unmark Running" : "Mark Running";
-    let upgradeText = upgraded ? "Downgrade" : "Upgrade";
+    const [running, setRunning] = useState(false);
+    const runningText = running ? "Unmark Running" : "Mark Running";
+    const upgradeText = upgraded ? "Downgrade" : "Upgrade";
     
-    let runningFunc = () => {
+    const runningFunc = () => {
         if(running && runningConverters[cardID]) {
-            let rcCopy = { ...runningConverters };
+            const rcCopy = { ...runningConverters };
             delete rcCopy[cardID];
             setRunningConverters(rcCopy);
         } else if(!running) {
@@ -34,7 +34,7 @@ function RunningFooter({cardID, converter, upgraded, setUpgraded, runningConvert
         setRunning(!running);
     };
 
-    let upgradeFunc = () => {
+    const upgradeFunc = () => {
         upgraded = !upgraded;
         if(runningConverters[cardID]) {
             setRunningConverters({

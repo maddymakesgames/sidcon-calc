@@ -1,10 +1,10 @@
 
 function FactionSelect({setFaction}) {
-    let data = global.all_cards;
+    const data = global.all_cards;
     
-    let options = [];
-    for(let faction of Object.values(data)) {
-        let option = <option key={faction.id} value={faction.id}>
+    const options = [];
+    for(const faction of Object.values(data)) {
+        const option = <option key={faction.id} value={faction.id}>
             {faction.name}
         </option>;
 

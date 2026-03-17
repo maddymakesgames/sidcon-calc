@@ -2,8 +2,8 @@ import { resourceImage } from './ResourceUtils.tsx';
 
 
 function CubeInput({resource, setCount, currentValue}) {
-    let image = resourceImage(resource);
-    let inputID = resource + "-input";
+    const image = resourceImage(resource);
+    const inputID = resource + "-input";
 
 
     return <div className="col col-6 col-md-3">

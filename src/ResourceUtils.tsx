@@ -59,7 +59,6 @@ export function get_donation_border_filename(resource_name) {
 }
 
 export function format_resources_text(res, donations) {
-    let output = '';
     const names = {
         white: 'White',
         green: 'Green',
@@ -76,14 +75,14 @@ export function format_resources_text(res, donations) {
         ships: 'Ships',
     };
 
-    let [resource_name, count] = res;
+    const [resource_name, count] = res;
 
-    let donation_text = donations ? ' donation' : '';
+    const donation_text = donations ? ' donation' : '';
     return `${count}${donation_text} ${names[resource_name]}`;
 }
 
 export function resourceImage(resource) {
-    let icon = `assets/icons/${FILENAMES[resource]}`;
+    const icon = `assets/icons/${FILENAMES[resource]}`;
     let classes = "centered";
 
     switch(resource) {
@@ -119,7 +118,7 @@ export function resourceImage(resource) {
 
 
 export function resource_icon(res, is_donation) {
-    let [resource_name, count] = res
+    const [resource_name, count] = res
     const classname = CLASSNAMES[resource_name];
     const filename = "assets/icons/" + FILENAMES[resource_name];
     const count_display = count > 1 ? count : "";
@@ -132,7 +131,7 @@ export function resource_icon(res, is_donation) {
 }
 
 export function countsToTotals(counts) {
-    let totals = {};
+    const totals = {};
     for(let i = 0; i < RESOURCES.length; i++) {
         totals[RESOURCES[i]] = counts[i] ?? 0;
     }
