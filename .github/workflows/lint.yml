@@ -6,6 +6,7 @@ permissions:
   contents: read
 
 concurrency:
+  group: "linter"
   cancel-in-progress: false
 
 jobs:
