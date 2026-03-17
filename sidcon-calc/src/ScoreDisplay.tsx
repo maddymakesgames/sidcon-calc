@@ -1,15 +1,9 @@
 import CubesInputHolder from './CubesInputHolder.tsx';
+import TotalDisplay from './TotalDisplay.tsx';
 import { RESOURCES, countsToTotals } from './ResourceUtils.tsx';
 import { useState } from 'react';
 
-function calculateScore(totals) {
-    const total = RESOURCES.reduce((newTotal, resourceName) => {
-        const owned = totals.owned?.[resourceName] ?? 0;
-        const donations = totals.donation?.[resourceName] ?? 0;
-        newTotal[resourceName] = owned + donations;
-        return newTotal;
-    }, {});
-
+function calculateScore(total) {
     let smalls = total.white + total.brown + total.green + total.wsmall + total.ships;
     let larges = total.black + total.blue + total.yellow + total.wlarge;
     let vp = total.vp + Math.floor(smalls / 6) + Math.floor(larges / 4) + Math.floor(total.ultratech / 2);
@@ -22,6 +16,31 @@ function calculateScore(totals) {
         vp: vp,
         partial: partials
     };
+}
+
+function totalCubes(t) {
+    return RESOURCES.reduce((total, resourceName) => {
+        const owned = t.owned?.[resourceName] ?? 0;
+        const donations = t.donation?.[resourceName] ?? 0;
+        total[resourceName] = owned + donations;
+        return total;
+    }, {});
+}
+
+function emptyTotals() {
+    const owned = RESOURCES.reduce((owned_totals, resource_name) => {
+        owned_totals[resource_name] = 0;
+        return owned_totals;
+    }, {});
+    const donation = RESOURCES.reduce((donation_totals, resource_name) => {
+        donation_totals[resource_name] = 0;
+        return donation_totals;
+    }, {});
+    return {
+        owned: owned,
+        donations: donation,
+    };
+
 }
 
 function addTotals(t1, t2) {
@@ -72,8 +91,13 @@ function ScoreDisplay({ runningConverters }) {
         };
     });
 
-    let totals = {owned: countsToTotals(resourceCounts), donations: {} };
-    let net = {};
+    let totals = emptyTotals();
+    let net = emptyTotals();
+
+    let rotting = { owned: countsToTotals(resourceCounts), donations: {} };
+
+    totals = addTotals(totals, rotting);
+    net = addTotals(totals, rotting);
     
     for(let convDetails of Object.values(runningConverters)) {
         let converter = convDetails.converter;
@@ -87,19 +111,45 @@ function ScoreDisplay({ runningConverters }) {
 
         totals = addTotals(totals, outputs);
         net = addTotals(net, outputs);
-        net = subTotals(net, outputs);
+        net = subTotals(net, inputs);
     }
     console.log(totals);
     console.log(net);
     
-    let score = calculateScore(totals);
+    let score = calculateScore(totalCubes(totals));
 
-    // TODO: actually display total & net cubes
+    RESOURCES.forEach((resource) => {
+        if((totals.owned?.[resource] ?? 0) < 0) {
+            totals.owned[resource] = 0;
+        }
+
+        if((totals.donation?.[resouce] ?? 0) < 0) {
+            total.donations[resource] = 0;
+        }
+    })
+
+    console.log(totals);
+    console.log(net);
 
     return <>
         <div className="container">
             <CubesInputHolder resourceCounts={resourceCounts} countSetters={countSetters} />
             <br />
+            <div id="totals-holder">
+                <h4>Total Cubes:</h4>
+                <div className="row">
+                    <TotalDisplay total={totals.owned} header="Owned:" />
+                    <TotalDisplay total={totals.donations} header="Donations:" />
+                    <TotalDisplay total={totalCubes(totals)} header="Total:" />
+                </div>
+                <hr />
+                <h4>Net:</h4>
+                <div className="row">
+                    <TotalDisplay total={net.owned} header="Owned:" />
+                    <TotalDisplay total={net.donations} header="Donations:" />
+                    <TotalDisplay total={totalCubes(net)} header="Total:" />
+                </div>
+            </div>
             <br />
             <div className="input-row">
                 <h5 id="score">
