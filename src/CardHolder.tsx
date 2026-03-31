@@ -1,26 +1,30 @@
+import type { FooterGenerator } from './Card.tsx';
 import CardDropdown from './CardDropdown.tsx';
+import type { Card } from './types';
 
-function CardHolder({currFaction, ownedCards, runningConverters, setRunningConverters}) {
-    const cardEras = [[], [], [], [], []];
-    for(const [id, card] of Object.entries(ownedCards)) {
+interface CardHolderInputs {
+    currFaction: string,
+    ownedCards: Card[],
+    footerGenerator: FooterGenerator
+}
+
+function CardHolder({currFaction, ownedCards, footerGenerator}: CardHolderInputs) {
+    const cardEras: Card[][] = [[], [], [], [], []];
+    for(const card of ownedCards) {
         if(card.owner != currFaction) {
-            cardEras[3].push([id, card]);
+            cardEras[4].push(card);
         } else {
-            if(card.era == "starting") {
-                cardEras[0].push([id, card]);
-            } else {
-                cardEras[parseInt(card.era)].push([id, card]);
-            }
+            cardEras[card.era].push(card);
         }
     }
 
     return <>
         <div className="container px-4" id="card-dropdown-container">
-            <CardDropdown label="Starting" runningConverters={runningConverters} setRunningConverters={setRunningConverters} cards={cardEras[0]} />
-            <CardDropdown label="Tier 1" runningConverters={runningConverters} setRunningConverters={setRunningConverters} cards={cardEras[1]} />
-            <CardDropdown label="Tier 2" runningConverters={runningConverters} setRunningConverters={setRunningConverters} cards={cardEras[2]} />
-            <CardDropdown label="Tier 3" runningConverters={runningConverters} setRunningConverters={setRunningConverters} cards={cardEras[3]} />
-            <CardDropdown label="Misc" runningConverters={runningConverters} setRunningConverters={setRunningConverters} cards={cardEras[4]} />
+            <CardDropdown label="Starting" footerGenerator={footerGenerator} cards={cardEras[0]} />
+            <CardDropdown label="Tier 1" footerGenerator={footerGenerator} cards={cardEras[1]} />
+            <CardDropdown label="Tier 2" footerGenerator={footerGenerator} cards={cardEras[2]} />
+            <CardDropdown label="Tier 3" footerGenerator={footerGenerator} cards={cardEras[3]} />
+            <CardDropdown label="Misc" footerGenerator={footerGenerator} cards={cardEras[4]} />
         </div>
     </>;
 }

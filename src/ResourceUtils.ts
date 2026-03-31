@@ -1,3 +1,5 @@
+import type { Resources } from "./types";
+
 export const FILENAMES = {
     white: "white.png",
     green: "green.png",
@@ -12,21 +14,25 @@ export const FILENAMES = {
     ultratech: "ultratech.png",
     vp: "victory_point.png",
     ships: "ship.png",
-};
+} as const;
 
 export const RESOURCES = [
     "white",
     "green",
     "brown",
     "wsmall",
+    "asmall",
     "yellow",
     "blue",
     "black",
     "wlarge",
+    "alarge",
     "ultratech",
     "vp",
     "ships",
-];
+] as const;
+
+export type ResourceType = typeof RESOURCES[number];
 
 export const CLASSNAMES = {
     white: "small-cube",
@@ -42,9 +48,13 @@ export const CLASSNAMES = {
     ultratech: "large-cube",
     vp: "victory-point",
     ships: "ship",
-};
+} as const;
 
-export function get_donation_border_filename(resource_name) {
+export type Resource = [ResourceType, number];
+
+export type ResourceCounts = [number, number, number, number, number, number, number, number, number, number, number, number, number];
+
+export function get_donation_border_filename(resource_name: ResourceType): string {
     let filename;
     if (resource_name === "ultratech") {
         filename = "ultratech_donation_border.png";
@@ -58,7 +68,7 @@ export function get_donation_border_filename(resource_name) {
     return "assets/icons/" + filename;
 }
 
-export function format_resources_text(res, donations) {
+export function format_resources_text(res: Resource, donations: boolean): string {
     const names = {
         white: 'White',
         green: 'Green',
@@ -81,57 +91,9 @@ export function format_resources_text(res, donations) {
     return `${count}${donation_text} ${names[resource_name]}`;
 }
 
-export function resourceImage(resource) {
-    const icon = `assets/icons/${FILENAMES[resource]}`;
-    let classes = "centered";
 
-    switch(resource) {
-        case 'white':
-        case 'green':
-        case 'brown':
-        case 'wsmall':
-        case 'asmall':
-            classes += " small-cube-text small-cube";
-            break;
-        case 'yellow':
-        case 'blue':
-        case 'black':
-        case 'wlarge':
-        case 'alarge':
-            classes += " large-cube-text large-cube";
-            break;
-        case 'ultratech':
-            classes += " large-cube";
-            break;
-        case 'ships':
-            classes += " ship";
-            break;
-        case 'vp':
-            classes += " victory-point";
-            break;
-    }
-    
-
-    return <img src={icon} alt="" className={classes} />;
-}
-
-
-
-export function resource_icon(res, is_donation) {
-    const [resource_name, count] = res
-    const classname = CLASSNAMES[resource_name];
-    const filename = "assets/icons/" + FILENAMES[resource_name];
-    const count_display = count > 1 ? count : "";
-    const donation_border = is_donation ? <img className={"centered donation " + classname} src={get_donation_border_filename(resource_name)} /> : <></>;
-    return <div className={"resource " + classname}>
-                {donation_border}
-                <img className={"centered " + classname} src={filename} alt={format_resources_text(res)} />
-                <span className="centered">{count_display}</span>
-            </div>; // whitespace here must be missing for correct arrow formatting
-}
-
-export function countsToTotals(counts) {
-    const totals = {};
+export function countsToTotals(counts: ResourceCounts): Resources {
+    const totals = {} as Resources;
     for(let i = 0; i < RESOURCES.length; i++) {
         totals[RESOURCES[i]] = counts[i] ?? 0;
     }

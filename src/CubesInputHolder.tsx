@@ -1,6 +1,11 @@
 import CubeInput from './CubeInput.tsx';
 
-function CubesInputHolder({resourceCounts, countSetters}) {
+interface Inputs {
+    resourceCounts: number[],
+    countSetters: ((count: number) => void)[]
+}
+
+function CubesInputHolder({resourceCounts, countSetters}: Inputs) {
         return <form>
                 <div className="row text-center">
                     <h4>Current Resources</h4>

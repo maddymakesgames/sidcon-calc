@@ -1,12 +1,18 @@
 import FactionSelect from './FactionSelect.tsx';
 
-function GameSettings({setFaction, setTurn, setPlayerCount}) {
-    function onTurn(e) {
-        setTurn(parseInt(e.target.value));
+interface Inputs {
+    setFaction: (faction: string) => void,
+    setTurn: (turn: number) => void,
+    setPlayerCount: (playerCount: number) => void
+}
+
+function GameSettings({setFaction, setTurn, setPlayerCount}: Inputs) {
+    function onTurn(e: React.InputEvent<HTMLInputElement>) {
+        setTurn(parseInt((e.target as HTMLInputElement).value));
     }
 
-    function onPlayerCount(e) {
-        setPlayerCount(parseInt(e.target.value));
+    function onPlayerCount(e: React.InputEvent<HTMLInputElement>) {
+        setPlayerCount(parseInt((e.target as HTMLInputElement).value));
     }
 
     return <>

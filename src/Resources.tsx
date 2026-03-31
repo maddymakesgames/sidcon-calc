@@ -1,15 +1,20 @@
 import { resource_icon } from './ResourceUtils.tsx';
 import { isEmptyObject } from './Utils.tsx';
+import type { ConverterResources, Resources } from './types';
 
-function Resources({resources}) {
+interface Inputs {
+    resources: ConverterResources
+}
+
+function Resources({resources}: Inputs) {
     const output = [];
     if(!isEmptyObject(resources.owned)) {
-        const icons = Object.entries(resources.owned).map(r => resource_icon(r, false));
+        const icons = Object.typedEntries<Resources>(resources.owned).map(r => resource_icon(r, false));
         output.push(...icons);
     }
 
     if(!isEmptyObject(resources.donations)) {
-        const icons = Object.entries(resources.donations).map(r => resource_icon(r, true));
+        const icons = Object.typedEntries<Resources>(resources.donations).map(r => resource_icon(r, true));
         output.push(...icons);
     }
 

@@ -1,7 +1,13 @@
-import { RESOURCES, CLASSNAMES, FILENAMES } from './ResourceUtils.tsx';
+import type { JSX } from 'react';
+import { RESOURCES, CLASSNAMES, FILENAMES } from './ResourceUtils.ts';
+import type { Resources } from './types';
 
+interface Inputs {
+    total: Resources,
+    header: JSX.Element
+}
 
-export default function TotalDisplay({total, header}) {
+export default function TotalDisplay({total, header}: Inputs) {
     const resources_html = RESOURCES.map((resource_name) => {
         const classname = CLASSNAMES[resource_name];
         const filename = "assets/icons/" + FILENAMES[resource_name];

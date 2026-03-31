@@ -123,7 +123,7 @@ function ScoreDisplay({ runningConverters }) {
             totals.owned[resource] = 0;
         }
 
-        if((totals.donations?.[resouce] ?? 0) < 0) {
+        if((totals.donations?.[resource] ?? 0) < 0) {
             totals.donations[resource] = 0;
         }
     })

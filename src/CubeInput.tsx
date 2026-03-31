@@ -1,7 +1,12 @@
-import { resourceImage } from './ResourceUtils.tsx';
+import { resourceImage, type ResourceType } from './ResourceUtils.tsx';
 
+interface Inputs {
+    resource: ResourceType,
+    setCount: (n: number) => void,
+    currentValue: number
+}
 
-function CubeInput({resource, setCount, currentValue}) {
+function CubeInput({resource, setCount, currentValue}: Inputs) {
     const image = resourceImage(resource);
     const inputID = resource + "-input";
 
@@ -11,7 +16,7 @@ function CubeInput({resource, setCount, currentValue}) {
                    <label htmlFor={inputID} className="input-group-text">
                        {image}
                    </label>
-                   <input className="form-control" id={inputID} type="number" value={currentValue} min={0} onInput={(e) => setCount(parseInt(e.target.value))} />
+                   <input className="form-control" id={inputID} type="number" value={currentValue} min={0} onInput={(e) => setCount(parseInt((e.target as HTMLInputElement).value))} />
                </div>
            </div>;
 }

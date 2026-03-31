@@ -1,6 +1,10 @@
 
-function FactionSelect({setFaction}) {
-    const data = global.all_cards;
+interface Inputs {
+    setFaction: (faction: string) => void
+}
+
+function FactionSelect({setFaction}: Inputs) {
+    const data = globalThis.all_cards;
     
     const options = [];
     for(const faction of Object.values(data)) {
@@ -14,7 +18,7 @@ function FactionSelect({setFaction}) {
     return (<>
         <div className="col input-group">
             <label htmlFor="faction-select" className="input-group-text">Faction:</label>
-            <select className="form-select faction-select" id="faction-select" onInput={e => setFaction(e.target.value)}>
+            <select className="form-select faction-select" id="faction-select" onInput={e => setFaction((e.target as HTMLSelectElement).value)}>
                 {options}
             </select>
         </div>
