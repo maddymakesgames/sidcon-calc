@@ -1,4 +1,4 @@
-import type { Faction, FactionsFile, RawCard, RawTechCard, Converter, ConverterResources } from './types'
+import type { Faction, FactionsFile, RawCard, RawTechCard, Converter, ConverterResources, Card } from './types'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
@@ -65,21 +65,17 @@ async function getData() {
             data.starting_cards[starting_card_id] = starting_cards[i];
         }
 
+        const transpose_keys = ["input", "output", "upgrade_input", "upgrade_output"] as const;
         const tech_cards = Object.entries(faction_data["tech_cards"])
-        for (const [id, card] of tech_cards) {
+        for (const [id, tech_card] of tech_cards) {
+            const card = tech_card as InProgressTechCard;
             const converter: Partial<Converter> = {};
-            const tech_card = card as InProgressTechCard;
-            converter.input = card.input;
-            delete tech_card.input;
-            converter.output = card.output;
-            delete tech_card.output;
-            converter.upgrade_input = card.upgrade_input;
-            delete tech_card.upgrade_input;
-            converter.upgrade_output = card.upgrade_output;
-            delete tech_card.upgrade_output;
-            tech_card.converters = [converter as Converter];
-            tech_card.starting = false;
-            data.tech_cards[id] = card;
+            for (const key of transpose_keys) {
+                converter[key] = card[key];
+                delete card[key];
+            }
+            card.converters = [converter as Converter];
+            data.tech_cards[id] = card as Card;
         }
 
         fixedFactions[faction_id] = data as Faction;
