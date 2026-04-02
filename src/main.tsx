@@ -1,4 +1,4 @@
-import type { Faction, FactionsFile, RawCard, RawTechCard, Converter, ConverterResources, CardDef } from './types'
+import type { Faction, FactionsFile, RawCard, RawTechCard, ConverterDef, ConverterResources, CardDef } from './types'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
@@ -38,7 +38,7 @@ type InProgressTechCard = {
     upgrade_input?: ConverterResources,
     output?: ConverterResources,
     upgrade_output?: ConverterResources
-    converters?: Converter[],
+    converters?: ConverterDef[],
     starting?: boolean
 }
 
@@ -70,12 +70,12 @@ async function getData() {
         data.tech_cards = {};
         for (const [id, tech_card] of tech_cards) {
             const card = tech_card as InProgressTechCard;
-            const converter: Partial<Converter> = {};
+            const converter: Partial<ConverterDef> = {};
             for (const key of transpose_keys) {
                 converter[key] = card[key];
                 delete card[key];
             }
-            card.converters = [converter as Converter];
+            card.converters = [converter as ConverterDef];
             data.tech_cards[`${faction_id}$${id}`] = card as CardDef;
         }
 

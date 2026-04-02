@@ -13,10 +13,8 @@ function CardDropdown({label, footerGenerator, cards}: Inputs) {
     const bs_target = '#' + collapse_id;
     const aria_controls = `collapse-card-dropdown-${label}`;
 
-    const card_elements = cards.flatMap((card) => {
-        return card.converters.map((_converter, idx) => {
-            return <Card key={card.id} cardID={card.id} card={card} converter_idx={idx} footerGenerator={footerGenerator} />;
-        });
+    const card_elements = cards.map((card) => {
+        return <Card key={card.id} card={card} footerGenerator={footerGenerator} />;
     }); 
 
     console.log(cards);

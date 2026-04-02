@@ -1,4 +1,4 @@
-import type { Resources } from "./types";
+import type { ConverterResources, Resources } from "./types";
 
 export const FILENAMES = {
     white: "white.png",
@@ -98,4 +98,12 @@ export function countsToTotals(counts: ResourceCounts): Resources {
         totals[RESOURCES[i]] = counts[i] ?? 0;
     }
     return totals;
+}
+
+export function isConverterResourcesEmpty(resources: ConverterResources) {
+    return isResourcesEmpty(resources.owned) && isResourcesEmpty(resources.donations);
+}
+
+export function isResourcesEmpty(resources: Resources): boolean {
+    return !Object.values(resources).some(v => v != 0);
 }

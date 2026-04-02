@@ -7,9 +7,9 @@ interface RunningConverters {
 }
 
 export function RunningFooterGenerator(runningConverters: RunningConverters, setRunningConverters: (rc: RunningConverters) => void): FooterGenerator {
-    return (cardID, converter, upgraded, setUpgraded) => {
+    return (converterID, converter, setHighlighted, upgraded, setUpgraded) => {
         return <>
-            <RunningFooter cardID={cardID} converter={converter}
+            <RunningFooter converterID={converterID} converter={converter} setHighlighted={setHighlighted}
                 upgraded={upgraded} setUpgraded={setUpgraded} 
                 runningConverters={runningConverters} setRunningConverters={setRunningConverters} 
             />
@@ -22,20 +22,23 @@ interface Inputs extends FooterGeneratorParams {
     setRunningConverters: (rc: RunningConverters) => void
 }
 
-function RunningFooter({cardID, converter, upgraded, setUpgraded, runningConverters, setRunningConverters}: Inputs) {
+function RunningFooter({converterID, converter, setHighlighted, upgraded, setUpgraded, runningConverters, setRunningConverters}: Inputs) {
     const [running, setRunning] = useState(false);
     const runningText = running ? "Unmark Running" : "Mark Running";
     const upgradeText = upgraded ? "Downgrade" : "Upgrade";
+    const cardID = converterID.split('$').slice(0, 2).join('$');
     
     const runningFunc = () => {
-        if(running && runningConverters[cardID]) {
+        if(running && runningConverters[converterID]) {
             const rcCopy = { ...runningConverters };
-            delete rcCopy[cardID];
+            delete rcCopy[converterID];
+            setHighlighted(false);
             setRunningConverters(rcCopy);
         } else if(!running) {
+            setHighlighted(true);
             setRunningConverters({
                 ...runningConverters,
-                [cardID]: {
+                [converterID]: {
                     converter: converter, 
                     upgraded: upgraded 
                 }
@@ -47,15 +50,26 @@ function RunningFooter({cardID, converter, upgraded, setUpgraded, runningConvert
 
     const upgradeFunc = () => {
         upgraded = !upgraded;
-        if(runningConverters[cardID]) {
+        if(runningConverters[converterID]) {
             setRunningConverters({
                 ...runningConverters,
-                [cardID]: {
-                    ...runningConverters[cardID],
+                [converterID]: {
+                    ...runningConverters[converterID],
                     upgraded: upgraded
                 }
             });
         }
+
+        const shared = Object.keys(runningConverters).filter(k => k.startsWith(cardID));
+
+        if(shared.length > 0) {
+            const rcCopy = { ...runningConverters };
+            for(const id of shared) {
+                rcCopy[id].upgraded = upgraded;
+            }
+            setRunningConverters(rcCopy);
+        }
+
         setUpgraded(upgraded);
     };
 

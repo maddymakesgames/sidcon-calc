@@ -1,49 +1,47 @@
-import { useState, type JSX } from 'react';
-import Resources from './Resources.tsx';
-import type { CardDef, Converter } from './types';
+import { Activity, useState, type JSX } from 'react';
+import type { CardDef, ConverterDef } from './types';
+import Converter from './Converter.tsx';
+import { isConverterResourcesEmpty } from './ResourceUtils.ts';
+import { converterID } from './Utils.tsx';
 
 interface Inputs {
-    cardID: string,
     card: CardDef,
-    converter_idx: number,
     footerGenerator: FooterGenerator
 }
 
 export type FooterGeneratorParams = {
-    cardID: string,
-    converter: Converter,
+    converterID: string,
+    converter: ConverterDef,
+    setHighlighted: (highlighted: boolean) => void,
     upgraded: boolean,
     setUpgraded: (upgraded: boolean) => void
 };
-export type FooterGenerator = (cardId: string, converter: Converter, upgraded: boolean, setUpgraded: (upgraded: boolean) => void) => JSX.Element;
+export type FooterGenerator = (cardID: string, converter: ConverterDef, setHighlighted: (highlighted: boolean) => void, upgraded: boolean, setUpgraded: (upgraded: boolean) => void) => JSX.Element;
 
-function Card({cardID, card, converter_idx, footerGenerator}: Inputs) {
+function Card({card, footerGenerator}: Inputs) {
     const [upgraded, setUpgraded] = useState(false);
-    
-    const converter = card.converters[converter_idx];
-    const input = upgraded ? converter.upgrade_input : converter.input;
-    const output = upgraded ? converter.upgrade_output : converter.output;
 
-    const footer = footerGenerator(cardID, converter, upgraded, setUpgraded);
+    const converters = [];
+
+    const labelNames = card.converters.length > 1;
+    for(let i = 0; i < card.converters.length; i++) {
+        console.log(i);
+        const converter = card.converters[i];
+        const hidden = !upgraded && isConverterResourcesEmpty(converter.output);
+        const name = labelNames ? `${card.name} ${String.fromCharCode(65 + i)}` : card.name;
+        const id = converterID(card.id, i);
+        converters.push(<>
+            <Activity mode={hidden ? "hidden" : "visible"}>
+                <Converter key={id} name={name} converterID={id} converter={converter} footerGenerator={footerGenerator} upgraded={upgraded} setUpgraded={setUpgraded} />
+            </Activity>
+        </>);
+        
+    }
+    
+    console.log(converters);
 
     return <>
-        <div className="col">
-            <div className="col card converter text-center" data-faction={card.owner}>
-                <div className="card-header">
-                    <span className="converter-name">{card.name}</span>
-                </div>
-                <div className="card-body">
-                    <span className="converter-inputs">
-                        <Resources resources={input} />
-                    </span>
-                    <img className="converter-arrow" src="assets/icons/white_arrow.png" alt="arrow" />
-                    <span className="converter-outputs">
-                        <Resources resources={output} />
-                    </span>
-                </div>
-                {footer}
-            </div>
-        </div>
+        {converters}
     </>;
 }
 

@@ -3,11 +3,11 @@ import CardHolder from './CardHolder.tsx';
 import ScoreDisplay from './ScoreDisplay.tsx';
 import { RunningFooterGenerator } from './RunningFooter.tsx';
 import { Activity, useState } from 'react';
-import type { Converter } from './types';
+import type { ConverterDef } from './types';
 import CardAddModal from './CardAddModal.tsx';
 
 export interface RunningConverter {
-    converter: Converter,
+    converter: ConverterDef,
     upgraded: boolean
 }
 

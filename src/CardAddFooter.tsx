@@ -1,26 +1,24 @@
 import { useState } from "react";
-import type { Converter } from "./types";
+import type { ConverterDef } from "./types";
+import type { FooterGeneratorParams } from "./Card";
 
 export function CardAddFooterGenerator(cardsToAdd: {[id: string]: [number, string]}, setCardsToAdd: (cards: {[id: string]: [number, string]}) => void) {
-    return (cardID: string, converter: Converter, upgraded: boolean, setUpgraded: (upgraded: boolean) => void,) =>  
+    return (cardID: string, converter: ConverterDef, setHighlighted: (highlighted: boolean) => void, upgraded: boolean, setUpgraded: (upgraded: boolean) => void,) =>  
         <>
-            <CardAddFooter cardID={cardID} converter={converter} 
+            <CardAddFooter converterID={cardID} converter={converter} setHighlighted={setHighlighted}
                            upgraded={upgraded} setUpgraded={setUpgraded} 
                            cardsToAdd={cardsToAdd} setCardsToAdd={setCardsToAdd} />
         </>
 }
 
-interface Inputs {
-    cardID: string, 
-    converter: Converter, 
-    upgraded: boolean, 
-    setUpgraded: (upgraded: boolean) => void, 
+interface Inputs extends FooterGeneratorParams {
     cardsToAdd: {[id: string]: [number, string]}, 
     setCardsToAdd: (cards: {[id: string]: [number, string]}) => void
 }
 
-function CardAddFooter({cardID, cardsToAdd, setCardsToAdd}: Inputs) {
+function CardAddFooter({converterID, cardsToAdd, setCardsToAdd, setHighlighted}: Inputs) {
     const [ttl, setTTL] = useState(6);
+    const cardID = converterID.split('$').slice(0, 2).join('$');
     
     const onTTLSelect = (e: React.InputEvent<HTMLSelectElement>) => {
         if(cardsToAdd[cardID]) {
@@ -37,8 +35,10 @@ function CardAddFooter({cardID, cardsToAdd, setCardsToAdd}: Inputs) {
         if(cardsToAdd[cardID]) {
             const ctaCopy = {...cardsToAdd};
             delete ctaCopy[cardID];
+            setHighlighted(false);
             setCardsToAdd(ctaCopy);
         } else {
+            setHighlighted(true);
             setCardsToAdd({
                 ...cardsToAdd,
                 [cardID]: [ttl, cardID]

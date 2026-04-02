@@ -52,9 +52,9 @@ export type CardDef = {
     owner: string,
     id: string,
     upgraded: boolean,
-    converters: Converter[],
-    upgrade_converters: Converter[],
-    placement_converters: Converter[]
+    converters: ConverterDef[],
+    upgrade_converters: ConverterDef[],
+    placement_converters: ConverterDef[]
 };
 
 export type RawConverter = {
@@ -64,7 +64,7 @@ export type RawConverter = {
     upgrade_output: ConverterResources
 };
 
-export type Converter = {
+export type ConverterDef = {
     input: ConverterResources,
     upgrade_input: ConverterResources,
     output: ConverterResources,
