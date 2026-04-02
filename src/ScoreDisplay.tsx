@@ -1,9 +1,11 @@
 import CubesInputHolder from './CubesInputHolder.tsx';
 import TotalDisplay from './TotalDisplay.tsx';
-import { RESOURCES, countsToTotals } from './ResourceUtils.ts';
+import { RESOURCES, countsToTotals, type ResourceCounts } from './ResourceUtils.ts';
 import { useState } from 'react';
+import type { RunningConverter } from './App.tsx';
+import type { ConverterResources, Resources } from './types';
 
-function calculateScore(total) {
+function calculateScore(total: Resources): { vp: number, partial: number } {
     const smalls = total.white + total.brown + total.green + total.wsmall + total.ships;
     const larges = total.black + total.blue + total.yellow + total.wlarge;
     let vp = total.vp + Math.floor(smalls / 6) + Math.floor(larges / 4) + Math.floor(total.ultratech / 2);
@@ -18,24 +20,24 @@ function calculateScore(total) {
     };
 }
 
-function totalCubes(t) {
+function totalCubes(t: ConverterResources): Resources {
     return RESOURCES.reduce((total, resourceName) => {
         const owned = t.owned?.[resourceName] ?? 0;
-        const donations = t.donation?.[resourceName] ?? 0;
+        const donations = t.donations?.[resourceName] ?? 0;
         total[resourceName] = owned + donations;
         return total;
-    }, {});
+    }, {} as Resources);
 }
 
-function emptyTotals() {
+function emptyTotals(): ConverterResources {
     const owned = RESOURCES.reduce((owned_totals, resource_name) => {
         owned_totals[resource_name] = 0;
         return owned_totals;
-    }, {});
+    }, {} as Resources);
     const donation = RESOURCES.reduce((donation_totals, resource_name) => {
         donation_totals[resource_name] = 0;
         return donation_totals;
-    }, {});
+    }, {} as Resources);
     return {
         owned: owned,
         donations: donation,
@@ -43,51 +45,55 @@ function emptyTotals() {
 
 }
 
-function addTotals(t1, t2) {
+function addTotals(t1: ConverterResources, t2: ConverterResources): ConverterResources {
     const owned = RESOURCES.reduce((ownedTotals, resourceName) => {
         const t1Resource = t1["owned"]?.[resourceName] ?? 0;
         const t2Resource = t2["owned"]?.[resourceName] ?? 0;
         ownedTotals[resourceName] = t1Resource + t2Resource;
         return ownedTotals;
-    }, {});
+    }, {} as Resources);
     const donation = RESOURCES.reduce((donationTotals, resourceName) => {
         const t1Resource = t1["donations"]?.[resourceName] ?? 0;
         const t2Resource = t2["donations"]?.[resourceName] ?? 0;
         donationTotals[resourceName] = t1Resource + t2Resource;
         return donationTotals;
-    }, {});
+    }, {} as Resources);
     return {
         owned: owned,
         donations: donation,
     };
 }
 
-function subTotals(t1, t2) {
+function subTotals(t1: ConverterResources, t2: ConverterResources): ConverterResources {
     const owned = RESOURCES.reduce((ownedTotals, resourceName) => {
         const t1Resource = t1["owned"][resourceName] ?? 0;
         const t2Resource = t2["owned"][resourceName] ?? 0;
         ownedTotals[resourceName] = t1Resource - t2Resource;
         return ownedTotals;
-    }, {});
+    }, {} as Resources);
     const donation = RESOURCES.reduce((donationTotals, resourceName) => {
         const t1Resource = t1["donations"]?.[resourceName] ?? 0;
         const t2Resource = t2["donations"]?.[resourceName] ?? 0;
         donationTotals[resourceName] = t1Resource - t2Resource;
         return donationTotals;
-    }, {});
+    }, {} as Resources);
     return {
         owned: owned,
         donations: donation,
     };
 }
 
-function ScoreDisplay({ runningConverters }) {
-    const [resourceCounts, setCounts] = useState(new Array(RESOURCES.length).fill(0));
+interface Inputs {
+    runningConverters: { [id: string]: RunningConverter }
+}
+
+function ScoreDisplay({ runningConverters }: Inputs) {
+    const [resourceCounts, setCounts] = useState<ResourceCounts>(new Array(RESOURCES.length).fill(0) as ResourceCounts);
     const countSetters = RESOURCES.map((_res, i) => {
-        return (value) => {
+        return (value: number) => {
             const newRes = Array.from(resourceCounts);
             newRes[i] = value;
-            setCounts(newRes);
+            setCounts(newRes as ResourceCounts);
         };
     });
 

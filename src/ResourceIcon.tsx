@@ -7,7 +7,7 @@ export function resource_icon(res: Resource, is_donation: boolean): JSX.Element 
     const filename = "assets/icons/" + FILENAMES[resource_name];
     const count_display = count > 1 ? count : "";
     const donation_border = is_donation ? <img className={"centered donation " + classname} src={get_donation_border_filename(resource_name)} /> : <></>;
-    return <div className={"resource " + classname}>
+    return <div className={"resource " + classname} key={`${resource_name}${is_donation}`}>
                 {donation_border}
                 <img className={"centered " + classname} src={filename} alt={format_resources_text(res, is_donation)} />
                 <span className="centered">{count_display}</span>

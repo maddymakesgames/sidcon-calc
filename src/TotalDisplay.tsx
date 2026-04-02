@@ -1,10 +1,9 @@
-import type { JSX } from 'react';
 import { RESOURCES, CLASSNAMES, FILENAMES } from './ResourceUtils.ts';
 import type { Resources } from './types';
 
 interface Inputs {
     total: Resources,
-    header: JSX.Element
+    header: string
 }
 
 export default function TotalDisplay({total, header}: Inputs) {
@@ -14,9 +13,9 @@ export default function TotalDisplay({total, header}: Inputs) {
         const count = total[resource_name];
         const color_class = count < 0 ? "text-danger" : count > 0 ? "text-success" : "";
         return <>
-            <div className="col-sm">
-            <span className={color_class}>{count}</span>
-            <img className={`centered ${classname}`} src={filename} alt={classname} />
+            <div className="col-sm" key={`${header}${resource_name}`}>
+                <span className={color_class}>{count}</span>
+                <img className={`centered ${classname}`} src={filename} alt={classname} />
             </div>
         </>;
     });

@@ -1,4 +1,4 @@
-import type { Faction, FactionsFile, RawCard, RawTechCard, Converter, ConverterResources, Card } from './types'
+import type { Faction, FactionsFile, RawCard, RawTechCard, Converter, ConverterResources, CardDef } from './types'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
@@ -54,19 +54,20 @@ async function getData() {
         const unique_cards = ("unique_cards" in data) ? [...faction_data.unique_cards] : [];
         data.unique_cards = {};
         for (let i = 0; i < unique_cards.length; i++) {
-            const unique_card_id = `unique${i}`;
+            const unique_card_id = `${faction_id}$unique${i}`;
             data.unique_cards[unique_card_id] = unique_cards[i];
         }
 
         const starting_cards = ("starting_cards" in data) ? [...faction_data["starting_cards"]] : [];
         data.starting_cards = {};
         for (let i = 0; i < starting_cards.length; i++) {
-            const starting_card_id = `starting${i}`;
+            const starting_card_id = `${faction_id}$starting${i}`;
             data.starting_cards[starting_card_id] = starting_cards[i];
         }
 
         const transpose_keys = ["input", "output", "upgrade_input", "upgrade_output"] as const;
-        const tech_cards = Object.entries(faction_data["tech_cards"])
+        const tech_cards = Object.entries(faction_data["tech_cards"]);
+        data.tech_cards = {};
         for (const [id, tech_card] of tech_cards) {
             const card = tech_card as InProgressTechCard;
             const converter: Partial<Converter> = {};
@@ -75,13 +76,14 @@ async function getData() {
                 delete card[key];
             }
             card.converters = [converter as Converter];
-            data.tech_cards[id] = card as Card;
+            data.tech_cards[`${faction_id}$${id}`] = card as CardDef;
         }
 
         fixedFactions[faction_id] = data as Faction;
     }
     // add properties to all converters
     for (const [faction_id, faction_data] of Object.entries(fixedFactions)) {
+        console.log(faction_data);
         for (const key of ["tech_cards", "unique_cards", "starting_cards"] as const) {
             if (!(key in faction_data)) {
                 continue;
@@ -97,19 +99,19 @@ async function getData() {
                     era = 4;
                 } else {
                     // Tech cards get their normal era numbers
-                    era = parseInt(id.charAt(0));
+                    era = parseInt(id.split('$')[1].charAt(0));
                 }
 
-                card["era"] = era;
-                card["owner"] = faction_id;
-                card["id"] = id;
+                card.era = era;
+                card.owner = faction_id;
+                card.id = id;
 
                 for (const converter of card.converters) {
-                    converter["running"] = false;
-                    converter["owned"] = false;
-                    converter["hidden"] = false;
-                    converter["ee_tokens"] = 0;
-                    converter["ttl"] = 0;
+                    converter.running = false;
+                    converter.owned = false;
+                    converter.hidden = false;
+                    converter.ee_tokens = 0;
+                    converter.ttl = 0;
                 }
             }
         }

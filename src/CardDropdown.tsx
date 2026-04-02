@@ -1,7 +1,13 @@
-import Card from './Card.tsx';
+import Card, { type FooterGenerator } from './Card.tsx';
+import type { CardDef } from './types';
 
+interface Inputs {
+    label: string,
+    footerGenerator: FooterGenerator,
+    cards: CardDef[]
+}
 
-function CardDropdown({label, footerGenerator, cards}) {
+function CardDropdown({label, footerGenerator, cards}: Inputs) {
 
     const collapse_id = `card-dropdown-${label.replace(' ', '-')}`;
     const bs_target = '#' + collapse_id;
@@ -9,7 +15,7 @@ function CardDropdown({label, footerGenerator, cards}) {
 
     const card_elements = cards.flatMap((card) => {
         return card.converters.map((_converter, idx) => {
-            return <Card key={card.id} cardId={card.id} card={card} converter_idx={idx} footerGenerator={footerGenerator} />;
+            return <Card key={card.id} cardID={card.id} card={card} converter_idx={idx} footerGenerator={footerGenerator} />;
         });
     }); 
 

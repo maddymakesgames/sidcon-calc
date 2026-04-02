@@ -1,15 +1,15 @@
 import type { FooterGenerator } from './Card.tsx';
 import CardDropdown from './CardDropdown.tsx';
-import type { Card } from './types';
+import type { CardDef } from './types';
 
 interface CardHolderInputs {
     currFaction: string,
-    ownedCards: Card[],
+    ownedCards: CardDef[],
     footerGenerator: FooterGenerator
 }
 
 function CardHolder({currFaction, ownedCards, footerGenerator}: CardHolderInputs) {
-    const cardEras: Card[][] = [[], [], [], [], []];
+    const cardEras: CardDef[][] = [[], [], [], [], []];
     for(const card of ownedCards) {
         if(card.owner != currFaction) {
             cardEras[4].push(card);

@@ -16,13 +16,13 @@ export type Faction = {
     name: string,
     id: string,
     starting_cards: {
-        [id: string]: Card
+        [id: string]: CardDef
     },
     unique_cards: {
-        [id: string]: Card
+        [id: string]: CardDef
     },
     tech_cards: {
-        [id: string]: Card
+        [id: string]: CardDef
     }
 }
 
@@ -44,7 +44,7 @@ export type RawTechCard = {
     upgrade_output: ConverterResources
 }
 
-export type Card = {
+export type CardDef = {
     name: string,
     upgrade_name: string,
     starting: boolean,

@@ -1,10 +1,10 @@
 import { useState, type JSX } from 'react';
 import Resources from './Resources.tsx';
-import type { Card, Converter } from './types';
+import type { CardDef, Converter } from './types';
 
 interface Inputs {
     cardID: string,
-    card: Card,
+    card: CardDef,
     converter_idx: number,
     footerGenerator: FooterGenerator
 }
