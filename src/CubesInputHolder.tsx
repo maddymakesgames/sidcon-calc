@@ -17,15 +17,15 @@ function CubesInputHolder({resourceCounts, countSetters}: Inputs) {
                     <CubeInput resource='wsmall' setCount={countSetters[3]} currentValue={resourceCounts[3]} />
                 </div>
                 <div className="row mb-2">
-                    <CubeInput resource='yellow' setCount={countSetters[4]} currentValue={resourceCounts[4]} />
-                    <CubeInput resource='blue' setCount={countSetters[5]} currentValue={resourceCounts[5]} />
-                    <CubeInput resource='black' setCount={countSetters[6]} currentValue={resourceCounts[6]} />
-                    <CubeInput resource='wlarge' setCount={countSetters[7]} currentValue={resourceCounts[7]} />
+                    <CubeInput resource='yellow' setCount={countSetters[5]} currentValue={resourceCounts[5]} />
+                    <CubeInput resource='blue' setCount={countSetters[6]} currentValue={resourceCounts[6]} />
+                    <CubeInput resource='black' setCount={countSetters[7]} currentValue={resourceCounts[7]} />
+                    <CubeInput resource='wlarge' setCount={countSetters[8]} currentValue={resourceCounts[8]} />
                 </div>
                 <div className="row mb-2">
-                    <CubeInput resource='ultratech' setCount={countSetters[8]} currentValue={resourceCounts[8]} />
-                    <CubeInput resource='vp' setCount={countSetters[9]} currentValue={resourceCounts[9]} />
-                    <CubeInput resource='ships' setCount={countSetters[10]} currentValue={resourceCounts[10]} />
+                    <CubeInput resource='ultratech' setCount={countSetters[10]} currentValue={resourceCounts[10]} />
+                    <CubeInput resource='vp' setCount={countSetters[11]} currentValue={resourceCounts[11]} />
+                    <CubeInput resource='ships' setCount={countSetters[12]} currentValue={resourceCounts[12]} />
                 </div>
             </form>;
 }

@@ -100,7 +100,7 @@ function ScoreDisplay({ runningConverters }: Inputs) {
     let totals = emptyTotals();
     let net = emptyTotals();
 
-    const rotting = { owned: countsToTotals(resourceCounts), donations: {} };
+    const rotting = { owned: countsToTotals(resourceCounts), donations: {} } as ConverterResources;
 
     totals = addTotals(totals, rotting);
     net = addTotals(totals, rotting);
@@ -112,15 +112,10 @@ function ScoreDisplay({ runningConverters }: Inputs) {
         const outputs = upgraded ? converter.upgrade_output : converter.output;
         const inputs = upgraded ? converter.upgrade_input : converter.input;
 
-        console.log(totals);
-        console.log(net);
-
         totals = addTotals(totals, outputs);
         net = addTotals(net, outputs);
         net = subTotals(net, inputs);
     }
-    console.log(totals);
-    console.log(net);
     
     const score = calculateScore(totalCubes(totals));
 
@@ -133,9 +128,6 @@ function ScoreDisplay({ runningConverters }: Inputs) {
             totals.donations[resource] = 0;
         }
     })
-
-    console.log(totals);
-    console.log(net);
 
     return <>
         <div className="container">

@@ -8,6 +8,11 @@ interface Inputs {
 
 export default function TotalDisplay({total, header}: Inputs) {
     const resources_html = RESOURCES.map((resource_name) => {
+        // Don't display asmall and awild, since theyre implementation details
+        if(resource_name.startsWith('a')) {
+            return <></>;
+        }
+
         const classname = CLASSNAMES[resource_name];
         const filename = "assets/icons/" + FILENAMES[resource_name];
         const count = total[resource_name];
