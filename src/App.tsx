@@ -1,4 +1,3 @@
-import './App.css';
 import GameSettings from './Settings.tsx';
 import CardHolder from './CardHolder.tsx';
 import ScoreDisplay from './ScoreDisplay.tsx';

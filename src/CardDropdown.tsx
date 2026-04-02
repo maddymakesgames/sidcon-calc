@@ -23,13 +23,15 @@ function CardDropdown({label, footerGenerator, cards}: Inputs) {
 
     return <>
         <div className="row card card-dropdown">
-            <div className="card-header collapsed" data-bs-toggle="collapse" data-bs-target={bs_target} aria-expanded="false" aria-controls={aria_controls}>
+            <div className="card-header d-flex collapsed" data-bs-toggle="collapse" data-bs-target={bs_target} aria-expanded="false" aria-controls={aria_controls}>
                 <span className="float-start"><strong>{label}</strong></span>
-                <span className="float-end fa-solid fa-chevron-right">🞂</span>
-                <span className="float-end fa-solid fa-chevron-down">🞃</span>
+                <i className="ms-auto align-content-center fa-solid fa-chevron-right"></i>
+                <i className="ms-auto align-content-center fa-solid fa-chevron-down"></i>
             </div>
             <div className="card-body collapse" id={collapse_id}>
-                {card_elements}
+                <div className="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 g-2">
+                    {card_elements}
+                </div>
             </div>
         </div>
     </>;
