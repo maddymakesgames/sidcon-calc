@@ -29,12 +29,16 @@ function App() {
         <>
             <Activity mode={modalVisible ? "hidden" : "visible"}>
                 <GameSettings setFaction={setFaction} setTurn={(_v: unknown)=>{}} setPlayerCount={(_v: unknown)=>{}}/>
+                <hr />
                 <CardHolder currFaction={currFaction} ownedCards={ownedCards} footerGenerator={footerGenerator} />
-                <div className="row" data-bs-target="#card_selector" onClick={() => setModalVisible(true)}>
-                    <div className="col card" id="add-card">
-                        <h2>+ Add Converter(s)</h2>
+                <div className="container">
+                    <div className="row" data-bs-target="#card_selector" onClick={() => setModalVisible(true)}>
+                        <div className="col card" id="add-card">
+                            <h2>+ Add Converter(s)</h2>
+                        </div>
                     </div>
                 </div>
+                <hr />
                 <ScoreDisplay runningConverters={runningConverters} />
             </Activity>
             {modalVisible && (
