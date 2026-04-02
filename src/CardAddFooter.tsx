@@ -49,15 +49,19 @@ function CardAddFooter({cardID, cardsToAdd, setCardsToAdd}: Inputs) {
     const buttonText = cardsToAdd[cardID] ? "Unselect" : "Select";
 
     return <>
-        <label htmlFor="ttl-select">Rounds</label>
-        <select className="form-select" id="ttl-select" onInput={onTTLSelect}>
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
-            <option value='4'>4</option>
-            <option value='5'>5</option>
-            <option value='6'>∞</option>
-        </select>
-        <button className="btn btn-light float-end" onClick={toggleToAdd}>{buttonText}</button>
+        <div className="card-footer d-flex flex-row">
+            <div className="input-group float-start w-50">
+                <label className="input-group-text" htmlFor="ttl-select">Rounds</label>
+                <select className="form-select" id="ttl-select" onInput={onTTLSelect}>
+                    <option value='6'>∞</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                </select>
+            </div>
+            <button className="ms-auto btn btn-light" onClick={toggleToAdd}>{buttonText}</button>
+        </div>
     </>;
 }
