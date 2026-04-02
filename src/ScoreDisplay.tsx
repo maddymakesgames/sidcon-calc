@@ -1,6 +1,6 @@
 import CubesInputHolder from './CubesInputHolder.tsx';
 import TotalDisplay from './TotalDisplay.tsx';
-import { RESOURCES, countsToTotals } from './ResourceUtils.tsx';
+import { RESOURCES, countsToTotals } from './ResourceUtils.ts';
 import { useState } from 'react';
 
 function calculateScore(total) {

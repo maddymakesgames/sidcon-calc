@@ -1,4 +1,4 @@
-import { resource_icon } from './ResourceUtils.tsx';
+import { resource_icon } from './ResourceIcon.tsx';
 import { isEmptyObject } from './Utils.tsx';
 import type { ConverterResources, Resources } from './types';
 

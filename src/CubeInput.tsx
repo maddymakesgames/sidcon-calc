@@ -1,4 +1,5 @@
-import { resourceImage, type ResourceType } from './ResourceUtils.tsx';
+import { resourceImage } from './ResourceImage.tsx';
+import { type ResourceType } from './ResourceUtils.ts';
 
 interface Inputs {
     resource: ResourceType,
