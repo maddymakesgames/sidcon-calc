@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { FooterGenerator } from "./Card";
 import type { ConverterDef } from "./types";
-import Resources from "./Resources";
+import ResourceDisplay from "./Resources";
 
 interface Inputs {
     name: string,
@@ -34,11 +34,11 @@ export default function Converter({name, converterID, converter, footerGenerator
                 </div>
                 <div className="card-body">
                     <span className="converter-inputs">
-                        <Resources resources={input} />
+                        <ResourceDisplay resources={input} />
                     </span>
                     <img className="converter-arrow" src="assets/icons/white_arrow.png" alt="arrow" />
                     <span className="converter-outputs">
-                        <Resources resources={output} />
+                        <ResourceDisplay resources={output} />
                     </span>
                 </div>
                 {footer}

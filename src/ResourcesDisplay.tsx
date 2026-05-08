@@ -6,7 +6,7 @@ interface Inputs {
     resources: ConverterResources
 }
 
-function Resources({resources}: Inputs) {
+function ResourceDisplay({resources}: Inputs) {
     const output = [];
     if(!isEmptyObject(resources.owned)) {
         const icons = Object.typedEntries<Resources>(resources.owned).map(r => resource_icon(r, false));
@@ -23,4 +23,4 @@ function Resources({resources}: Inputs) {
     </>;
 }
 
-export default Resources;
+export default ResourceDisplay;
