@@ -16,7 +16,7 @@ function App() {
     const [currFaction, setFactionRaw] = useState(startingFaction.id);
     const [ownedCards, setOwnedCards] = useState(Object.values(startingFaction.starting_cards));
     const [runningConverters, setRunningConverters] = useState<{[id: string]: RunningConverter}>({});
-    const [modalVisible, setModalVisible] = useState(true);
+    const [modalVisible, setModalVisible] = useState(false);
     
     const footerGenerator = RunningFooterGenerator(runningConverters, setRunningConverters);
 
