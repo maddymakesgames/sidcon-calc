@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { FooterGenerator } from "./Card";
 import type { ConverterDef } from "./types";
-import ResourceDisplay from "./Resources";
+import ResourceDisplay from "./ResourcesDisplay";
 
 interface Inputs {
     name: string,
