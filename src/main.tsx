@@ -1,5 +1,3 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
 import type { Faction, FactionsFile, RawCard, RawTechCard, ConverterDef, ConverterResources, CardDef } from './types'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'

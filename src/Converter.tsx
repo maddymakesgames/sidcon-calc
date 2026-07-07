@@ -1,8 +1,7 @@
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { useState } from "react";
-import type { FooterGenerator } from "ConverterCard.tsx";
+import type { FooterGenerator } from "./ConverterCard.tsx";
 import type { ConverterDef } from "./types";
 import ResourceDisplay from "./ResourcesDisplay";
 

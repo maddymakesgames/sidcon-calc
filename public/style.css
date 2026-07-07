@@ -129,12 +129,6 @@ form label:has(img) {
     border-bottom: none;
 }
 
-/* .card-header.collapsed > .fa-chevron-down { */
-/*     display: none; */
-/* } */
-/* .card-header:not(.collapsed) > .fa-chevron-right { */
-/*     display: none; */
-/* } */
 .card-dropdown > .card-header {
     cursor: pointer;
 }
