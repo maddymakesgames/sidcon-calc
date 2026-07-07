@@ -1,5 +1,8 @@
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import { useState } from "react";
-import type { FooterGenerator } from "./Card";
+import type { FooterGenerator } from "ConverterCard.tsx";
 import type { ConverterDef } from "./types";
 import ResourceDisplay from "./ResourcesDisplay";
 
@@ -20,19 +23,19 @@ export default function Converter({name, converterID, converter, footerGenerator
 
     const footer = footerGenerator(converterID, converter, setHighlighted, upgraded, setUpgraded);
 
-    let cardClasses = "col card converter text-center";
+    let cardClasses = "converter text-center";
 
-    if(highlighted) {
+    if (highlighted) {
         cardClasses += ' running';
     }
 
     return <>
-        <div className="col">
-            <div className={cardClasses}>
-                <div className="card-header">
+        <Col>
+            <Card as={Col} className={cardClasses}>
+                <Card.Header>
                     <span className="converter-name">{name}</span>
-                </div>
-                <div className="card-body">
+                </Card.Header>
+                <Card.Body>
                     <span className="converter-inputs">
                         <ResourceDisplay resources={input} />
                     </span>
@@ -40,10 +43,10 @@ export default function Converter({name, converterID, converter, footerGenerator
                     <span className="converter-outputs">
                         <ResourceDisplay resources={output} />
                     </span>
-                </div>
+                </Card.Body>
                 {footer}
-            </div>
-        </div>
+            </Card>
+        </Col>
     </>;
 }
 

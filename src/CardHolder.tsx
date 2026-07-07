@@ -1,4 +1,5 @@
-import type { FooterGenerator } from './Card.tsx';
+import Container from 'react-bootstrap/Container';
+import type { FooterGenerator } from './ConverterCard.tsx';
 import CardDropdown from './CardDropdown.tsx';
 import type { CardDef } from './types';
 
@@ -19,13 +20,13 @@ function CardHolder({currFaction, ownedCards, footerGenerator}: CardHolderInputs
     }
 
     return <>
-        <div className="container px-4" id="card-dropdown-container">
+        <Container className="px-4" id="card-dropdown-container">
             <CardDropdown label="Starting" footerGenerator={footerGenerator} cards={cardEras[0]} />
             <CardDropdown label="Tier 1" footerGenerator={footerGenerator} cards={cardEras[1]} />
             <CardDropdown label="Tier 2" footerGenerator={footerGenerator} cards={cardEras[2]} />
             <CardDropdown label="Tier 3" footerGenerator={footerGenerator} cards={cardEras[3]} />
             <CardDropdown label="Misc" footerGenerator={footerGenerator} cards={cardEras[4]} />
-        </div>
+        </Container>
     </>;
 }
 

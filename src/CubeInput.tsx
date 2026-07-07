@@ -1,3 +1,6 @@
+import Col from 'react-bootstrap/Col';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
 import { resourceImage } from './ResourceImage.tsx';
 import { type ResourceType } from './ResourceUtils.ts';
 
@@ -12,14 +15,14 @@ function CubeInput({resource, setCount, currentValue}: Inputs) {
     const inputID = resource + "-input";
 
 
-    return <div className="col col-6 col-md-3">
-               <div className="input-group">
-                   <label htmlFor={inputID} className="input-group-text">
+    return <Col xs={6} md={3}>
+               <InputGroup>
+                   <InputGroup.Text id={inputID} as="label">
                        {image}
-                   </label>
-                   <input className="form-control" id={inputID} type="number" value={currentValue} min={0} onInput={(e) => setCount(parseInt((e.target as HTMLInputElement).value))} />
-               </div>
-           </div>;
+                   </InputGroup.Text>
+                   <Form.Control id={inputID} type="number" value={currentValue} min={0} onInput={(e) => setCount(parseInt((e.target as HTMLInputElement).value))} />
+               </InputGroup>
+           </Col>;
 }
 
 export default CubeInput;

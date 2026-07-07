@@ -1,3 +1,5 @@
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import FactionSelect from './FactionSelect.tsx';
 import type { CardDef } from './types';
@@ -10,10 +12,11 @@ interface Inputs {
     curFaction: string,
     ownedCards: CardDef[],
     setOwnedCards: (ownedCards: CardDef[]) => void,
+    visible: boolean,
     setVisible: (visible: boolean) => void
 };
 
-export default function CardAddModal({curFaction, ownedCards, setOwnedCards, setVisible}: Inputs) {
+export default function CardAddModal({curFaction, ownedCards, setOwnedCards, visible, setVisible}: Inputs) {
     const [selectedFaction, setSelectedFaction] = useState(curFaction);
     const [cardsToAdd, setCardsToAdd] = useState<{[id: string]: [number, string]}>({});
 
@@ -65,11 +68,15 @@ export default function CardAddModal({curFaction, ownedCards, setOwnedCards, set
     };
 
     return <>
-        <FactionSelect setFaction={setSelectedFaction} />
-        <CardHolder currFaction={selectedFaction} ownedCards={unownedCards} footerGenerator={footerGenerator} />
-        <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={close}>Close</button>
-            <button type="button" className="btn btn-primary" onClick={addCards}>Add</button>
-        </div>
+        <Modal show={visible} onHide={close} fullscreen={true}>
+            <Modal.Body>
+                <FactionSelect setFaction={setSelectedFaction} />
+                <CardHolder currFaction={selectedFaction} ownedCards={unownedCards} footerGenerator={footerGenerator} />
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={close}>Close</Button>
+                <Button variant="primary" onClick={addCards}>Add</Button>
+            </Modal.Footer>
+        </Modal>
     </>;
 }

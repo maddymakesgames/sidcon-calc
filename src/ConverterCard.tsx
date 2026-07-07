@@ -18,7 +18,7 @@ export type FooterGeneratorParams = {
 };
 export type FooterGenerator = (cardID: string, converter: ConverterDef, setHighlighted: (highlighted: boolean) => void, upgraded: boolean, setUpgraded: (upgraded: boolean) => void) => JSX.Element;
 
-function Card({card, footerGenerator}: Inputs) {
+function ConverterCard({card, footerGenerator}: Inputs) {
     const [upgraded, setUpgraded] = useState(false);
 
     const converters = [];
@@ -28,7 +28,8 @@ function Card({card, footerGenerator}: Inputs) {
         console.log(i);
         const converter = card.converters[i];
         const hidden = !upgraded && isConverterResourcesEmpty(converter.output);
-        const name = labelNames ? `${card.name} ${String.fromCharCode(65 + i)}` : card.name;
+        const rootName = upgraded ? card.upgrade_name : card.name;
+        const name = labelNames ? `${rootName} ${String.fromCharCode(65 + i)}` : rootName;
         const id = converterID(card.id, i);
         converters.push(<>
             <Activity mode={hidden ? "hidden" : "visible"}>
@@ -45,4 +46,4 @@ function Card({card, footerGenerator}: Inputs) {
     </>;
 }
 
-export default Card;
+export default ConverterCard;

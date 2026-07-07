@@ -1,3 +1,5 @@
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 interface Inputs {
     setFaction: (faction: string) => void
@@ -16,12 +18,12 @@ function FactionSelect({setFaction}: Inputs) {
     }
 
     return (<>
-        <div className="col input-group">
-            <label htmlFor="faction-select" className="input-group-text">Faction:</label>
-            <select className="form-select faction-select" id="faction-select" onInput={e => setFaction((e.target as HTMLSelectElement).value)}>
+        <InputGroup className="col">
+            <InputGroup.Text id="faction-select">Faction:</InputGroup.Text>
+            <Form.Select className="faction-select" id="faction-select" onInput={e => setFaction((e.target as HTMLSelectElement).value)}>
                 {options}
-            </select>
-        </div>
+            </Form.Select>
+        </InputGroup>
     </>);
 }
 

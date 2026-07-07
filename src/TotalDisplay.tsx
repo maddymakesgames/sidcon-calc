@@ -1,3 +1,5 @@
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { RESOURCES, CLASSNAMES, FILENAMES } from './ResourceUtils.ts';
 import type { Resources } from './types';
 
@@ -18,19 +20,19 @@ export default function TotalDisplay({total, header}: Inputs) {
         const count = total[resource_name];
         const color_class = count < 0 ? "text-danger" : count > 0 ? "text-success" : "";
         return <>
-            <div className="col-sm" key={`${header}${resource_name}`}>
+            <Col sm key={`${header}${resource_name}`}>
                 <span className={color_class}>{count}</span>
                 <img className={`centered ${classname}`} src={filename} alt={classname} />
-            </div>
+            </Col>
         </>;
     });
 
     return <>
-        <div className="col-4 col-md-12">
-            <div className="row">
-                <div className="col-sm-2">{header}</div>{resources_html}
-            </div>
-        </div>
+        <Col xs={4} md={12}>
+            <Row>
+                <Col sm={2}>{header}</Col>{resources_html}
+            </Row>
+        </Col>
     </>;
     
 }

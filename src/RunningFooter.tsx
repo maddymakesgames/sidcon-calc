@@ -1,5 +1,7 @@
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
-import type { FooterGenerator, FooterGeneratorParams } from './Card';
+import type { FooterGenerator, FooterGeneratorParams } from './ConverterCard.tsx';
 import type { RunningConverter } from './App';
 
 interface RunningConverters {
@@ -75,9 +77,9 @@ function RunningFooter({converterID, converter, setHighlighted, upgraded, setUpg
 
 
     return <>
-        <div className="card-footer">
-            <button className="btn btn-light float-start" onClick={upgradeFunc}>{upgradeText}</button>
-            <button className="btn btn-light float-end" onClick={runningFunc}>{runningText}</button>
-        </div>
+        <Card.Footer>
+            <Button variant="light" className="float-start" onClick={upgradeFunc}>{upgradeText}</Button>
+            <Button variant="light" className="float-end" onClick={runningFunc}>{runningText}</Button>
+        </Card.Footer>
     </>;
 }

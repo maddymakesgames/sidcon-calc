@@ -1,3 +1,5 @@
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import CubesInputHolder from './CubesInputHolder.tsx';
 import TotalDisplay from './TotalDisplay.tsx';
 import { RESOURCES, countsToTotals, type ResourceCounts } from './ResourceUtils.ts';
@@ -130,23 +132,23 @@ function ScoreDisplay({ runningConverters }: Inputs) {
     })
 
     return <>
-        <div className="container">
+        <Container>
             <CubesInputHolder resourceCounts={resourceCounts} countSetters={countSetters} />
             <br />
             <div id="totals-holder">
                 <h4>Total Cubes:</h4>
-                <div className="row">
+                <Row>
                     <TotalDisplay total={totals.owned} header="Owned:" />
                     <TotalDisplay total={totals.donations} header="Donations:" />
                     <TotalDisplay total={totalCubes(totals)} header="Total:" />
-                </div>
+                </Row>
                 <hr />
                 <h4>Net:</h4>
-                <div className="row">
+                <Row>
                     <TotalDisplay total={net.owned} header="Owned:" />
                     <TotalDisplay total={net.donations} header="Donations:" />
                     <TotalDisplay total={totalCubes(net)} header="Total:" />
-                </div>
+                </Row>
             </div>
             <br />
             <div className="input-row">
@@ -155,7 +157,7 @@ function ScoreDisplay({ runningConverters }: Inputs) {
                 </h5>
             </div>
             <br />
-        </div>
+        </Container>
     </>;
 }
 

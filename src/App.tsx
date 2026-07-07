@@ -1,3 +1,7 @@
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import GameSettings from './Settings.tsx';
 import CardHolder from './CardHolder.tsx';
 import ScoreDisplay from './ScoreDisplay.tsx';
@@ -31,18 +35,18 @@ function App() {
                 <GameSettings setFaction={setFaction} setTurn={(_v: unknown)=>{}} setPlayerCount={(_v: unknown)=>{}}/>
                 <hr />
                 <CardHolder currFaction={currFaction} ownedCards={ownedCards} footerGenerator={footerGenerator} />
-                <div className="container">
-                    <div className="row" data-bs-target="#card_selector" onClick={() => setModalVisible(true)}>
-                        <div className="col card" id="add-card">
-                            <h2>+ Add Converter(s)</h2>
-                        </div>
-                    </div>
-                </div>
+                <Container>
+                    <Row data-bs-target="#card_selector" onClick={() => setModalVisible(true)}>
+                        <Card as={Col} className="mx-3" id="add-card">
+                            <h2>Add Converter(s)</h2>
+                        </Card>
+                    </Row>
+                </Container>
                 <hr />
                 <ScoreDisplay runningConverters={runningConverters} />
             </Activity>
             {modalVisible && (
-                <CardAddModal curFaction={currFaction} ownedCards={ownedCards} setOwnedCards={setOwnedCards} setVisible={setModalVisible} />
+                <CardAddModal curFaction={currFaction} ownedCards={ownedCards} setOwnedCards={setOwnedCards} visible={modalVisible} setVisible={setModalVisible} />
             )}
         </>
     );
