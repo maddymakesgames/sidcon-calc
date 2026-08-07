@@ -26,8 +26,8 @@ jobs:
         uses: actions/setup-node@v6.0.0
         with:
           node-version: 24.x
-      - name: Run generator.js
-        run: node generator.js
+      - name: Run generator.cjs
+        run: node generator.cjs
       - name: Remove generator
         run: rm generator.js;
       - name: Install deps
