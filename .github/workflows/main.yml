@@ -29,7 +29,7 @@ jobs:
       - name: Run generator.cjs
         run: node generator.cjs
       - name: Remove generator
-        run: rm generator.js;
+        run: rm generator.cjs;
       - name: Install deps
         run: npm ci
       - name: Build
