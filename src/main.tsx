@@ -29,6 +29,7 @@ interface InProgressFaction {
     unique_cards: RawCard[] | {[key: string]: RawCard},
     starting_cards: RawCard[] | {[key: string]: RawCard},
     tech_cards: {[key: string]: RawCard | RawTechCard},
+    distributed_cards: RawCard[] | {[key: string]: RawCard},
 }
 
 type InProgressTechCard = {
@@ -58,6 +59,14 @@ async function getData() {
             data.unique_cards[unique_card_id] = unique_cards[i];
         }
 
+        const distributed_cards = faction_data.distributed_cards ? Object.values(faction_data.distributed_cards) : [];
+        console.log(faction_data.distributed_cards);
+        data.distributed_cards = {};
+        for (let i = 0; i < distributed_cards.length; i++) {
+            const distributed_card_id = `${faction_id}$distributed${i}`;
+            data.distributed_cards[distributed_card_id] = distributed_cards[i];
+        }
+
         const starting_cards = ("starting_cards" in data) ? [...faction_data["starting_cards"]] : [];
         data.starting_cards = {};
         for (let i = 0; i < starting_cards.length; i++) {
@@ -83,15 +92,14 @@ async function getData() {
     }
     // add properties to all converters
     for (const [faction_id, faction_data] of Object.entries(fixedFactions)) {
-        console.log(faction_data);
-        for (const key of ["tech_cards", "unique_cards", "starting_cards"] as const) {
+        for (const key of ["tech_cards", "unique_cards", "starting_cards", "distributed_cards"] as const) {
             if (!(key in faction_data)) {
                 continue;
             }
             for (const [id, card] of Object.entries(faction_data[key])) {
                 card.upgraded = false;
                 let era;
-                if(key == "starting_cards") {
+                if(key == "starting_cards" || key == "distributed_cards") {
                     // starting cards are treated as era 0
                     era = 0;
                 } else if(key == "unique_cards") {

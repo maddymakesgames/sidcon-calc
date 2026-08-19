@@ -25,7 +25,6 @@ function ConverterCard({card, footerGenerator}: Inputs) {
 
     const labelNames = card.converters.length > 1;
     for(let i = 0; i < card.converters.length; i++) {
-        console.log(i);
         const converter = card.converters[i];
         const hidden = !upgraded && isConverterResourcesEmpty(converter.output);
         const rootName = upgraded ? card.upgrade_name : card.name;
@@ -39,8 +38,6 @@ function ConverterCard({card, footerGenerator}: Inputs) {
         
     }
     
-    console.log(converters);
-
     return <>
         {converters}
     </>;

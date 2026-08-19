@@ -20,8 +20,6 @@ function CardDropdown({label, footerGenerator, cards}: Inputs) {
         return <ConverterCard key={card.id} card={card} footerGenerator={footerGenerator} />;
     }); 
 
-    console.log(cards);
-
     return <>
         <Row as={Card} className="card-dropdown">
             <Card.Header className="d-flex collapsed" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls={aria_controls}>

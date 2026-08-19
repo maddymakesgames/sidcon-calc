@@ -24,7 +24,7 @@ export default function CardAddModal({curFaction, ownedCards, setOwnedCards, vis
 
     const faction_data = globalThis.all_cards[selectedFaction];
 
-    for (const key of ["tech_cards", "unique_cards", "starting_cards"] as const) {
+    for (const key of ["tech_cards", "unique_cards", "starting_cards", "distributed_cards"] as const) {
         if (!(key in faction_data)) {
             continue;
         }

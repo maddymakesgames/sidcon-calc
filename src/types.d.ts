@@ -10,6 +10,9 @@ export type RawFaction = {
     tech_cards: {
         [id: string]: RawTechCard
     }
+    distributed_cards?: {
+        [faction: string]: RawCard,
+    }
 };
 
 export type Faction = {
@@ -22,6 +25,9 @@ export type Faction = {
         [id: string]: CardDef
     },
     tech_cards: {
+        [id: string]: CardDef
+    },
+    distributed_cards: {
         [id: string]: CardDef
     }
 }

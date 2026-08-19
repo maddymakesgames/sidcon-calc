@@ -16,6 +16,8 @@ export function getCard(cardID: string): CardDef {
         return globalThis.all_cards[faction].starting_cards[cardID];
     } else if(card.startsWith('unique')) {
         return globalThis.all_cards[faction].unique_cards[cardID];
+    } else if(card.startsWith('distributed')) {
+        return globalThis.all_cards[faction].distributed_cards[cardID];
     } else {
         return globalThis.all_cards[faction].tech_cards[cardID];
     }
