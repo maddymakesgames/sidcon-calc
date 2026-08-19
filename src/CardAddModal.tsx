@@ -45,6 +45,7 @@ export default function CardAddModal({curFaction, ownedCards, setOwnedCards, vis
     //
     // THIS WILL CHANGE EVENTUALLY I'm just too far into this rewrite to change it now
     const addCards = () => {
+        const newOwnedCards = [...ownedCards];
         for(const [ttl, cardID] of Object.values(cardsToAdd)) {
             const card = getCard(cardID);
 
@@ -54,12 +55,10 @@ export default function CardAddModal({curFaction, ownedCards, setOwnedCards, vis
                 converter.ttl = ttl;
             }
 
-            setOwnedCards([
-                ...ownedCards,
-                card
-            ]);
+            newOwnedCards.push(card);
         }
 
+        setOwnedCards(newOwnedCards);
         setVisible(false);
     };
 
