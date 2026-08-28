@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { FooterGenerator } from "./ConverterCard.tsx";
 import type { ConverterDef } from "./types";
 import ResourceDisplay from "./ResourcesDisplay";
+import { calculateValue, totalCubes } from './ResourceUtils.ts';
 
 interface Inputs {
     name: string,
@@ -22,6 +23,10 @@ export default function Converter({name, converterID, converter, footerGenerator
 
     const footer = footerGenerator(converterID, converter, setHighlighted, upgraded, setUpgraded);
 
+    const input_value = calculateValue(totalCubes(input));
+    const output_value = calculateValue(totalCubes(output));
+    const profit = output_value - input_value;
+
     let cardClasses = "converter text-center";
 
     if (highlighted) {
@@ -34,6 +39,11 @@ export default function Converter({name, converterID, converter, footerGenerator
                 <Card.Header>
                     <span className="converter-name">{name}</span>
                 </Card.Header>
+                <Card.Subtitle>
+                    <span className="converter-number">{input_value}-&gt;</span>
+                    <span className="converter-number">{output_value}</span>
+                    <span className="converter-number">(+{profit})</span>
+                </Card.Subtitle>
                 <Card.Body>
                     <span className="converter-inputs">
                         <ResourceDisplay resources={input} />

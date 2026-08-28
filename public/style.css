@@ -45,7 +45,23 @@ img.converter-arrow {
     font-family: evogria;
 }
 
-.converter-name {
+.converter-inputs {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.converter-outputs {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.converter-profit {
+    font-family: evogria;
+    display: flex;
+    flex-direction: row;
+}
+
+.converter-number {
     font-family: evogria;
 }
 

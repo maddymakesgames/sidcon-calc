@@ -2,88 +2,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import CubesInputHolder from './CubesInputHolder.tsx';
 import TotalDisplay from './TotalDisplay.tsx';
-import { RESOURCES, countsToTotals, type ResourceCounts } from './ResourceUtils.ts';
+import { RESOURCES, addTotals, calculateScore, countsToTotals, emptyTotals, subTotals, totalCubes, type ResourceCounts } from './ResourceUtils.ts';
 import { useState } from 'react';
 import type { RunningConverter } from './App.tsx';
-import type { ConverterResources, Resources } from './types';
+import type { ConverterResources } from './types';
 
-function calculateScore(total: Resources): { vp: number, partial: number } {
-    const smalls = total.white + total.brown + total.green + total.wsmall + total.ships;
-    const larges = total.black + total.blue + total.yellow + total.wlarge;
-    let vp = total.vp + Math.floor(smalls / 6) + Math.floor(larges / 4) + Math.floor(total.ultratech / 2);
-    let partials = (smalls % 6) * 2 + (larges % 4) * 3 + (total.ultratech % 2) * 6;
-
-    vp += Math.floor(partials / 12);
-    partials = partials % 12;
-
-    return {
-        vp: vp,
-        partial: partials
-    };
-}
-
-function totalCubes(t: ConverterResources): Resources {
-    return RESOURCES.reduce((total, resourceName) => {
-        const owned = t.owned?.[resourceName] ?? 0;
-        const donations = t.donations?.[resourceName] ?? 0;
-        total[resourceName] = owned + donations;
-        return total;
-    }, {} as Resources);
-}
-
-function emptyTotals(): ConverterResources {
-    const owned = RESOURCES.reduce((owned_totals, resource_name) => {
-        owned_totals[resource_name] = 0;
-        return owned_totals;
-    }, {} as Resources);
-    const donation = RESOURCES.reduce((donation_totals, resource_name) => {
-        donation_totals[resource_name] = 0;
-        return donation_totals;
-    }, {} as Resources);
-    return {
-        owned: owned,
-        donations: donation,
-    };
-
-}
-
-function addTotals(t1: ConverterResources, t2: ConverterResources): ConverterResources {
-    const owned = RESOURCES.reduce((ownedTotals, resourceName) => {
-        const t1Resource = t1["owned"]?.[resourceName] ?? 0;
-        const t2Resource = t2["owned"]?.[resourceName] ?? 0;
-        ownedTotals[resourceName] = t1Resource + t2Resource;
-        return ownedTotals;
-    }, {} as Resources);
-    const donation = RESOURCES.reduce((donationTotals, resourceName) => {
-        const t1Resource = t1["donations"]?.[resourceName] ?? 0;
-        const t2Resource = t2["donations"]?.[resourceName] ?? 0;
-        donationTotals[resourceName] = t1Resource + t2Resource;
-        return donationTotals;
-    }, {} as Resources);
-    return {
-        owned: owned,
-        donations: donation,
-    };
-}
-
-function subTotals(t1: ConverterResources, t2: ConverterResources): ConverterResources {
-    const owned = RESOURCES.reduce((ownedTotals, resourceName) => {
-        const t1Resource = t1["owned"][resourceName] ?? 0;
-        const t2Resource = t2["owned"][resourceName] ?? 0;
-        ownedTotals[resourceName] = t1Resource - t2Resource;
-        return ownedTotals;
-    }, {} as Resources);
-    const donation = RESOURCES.reduce((donationTotals, resourceName) => {
-        const t1Resource = t1["donations"]?.[resourceName] ?? 0;
-        const t2Resource = t2["donations"]?.[resourceName] ?? 0;
-        donationTotals[resourceName] = t1Resource - t2Resource;
-        return donationTotals;
-    }, {} as Resources);
-    return {
-        owned: owned,
-        donations: donation,
-    };
-}
 
 interface Inputs {
     runningConverters: { [id: string]: RunningConverter }

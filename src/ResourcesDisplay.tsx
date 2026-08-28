@@ -18,9 +18,9 @@ function ResourceDisplay({resources}: Inputs) {
         output.push(...icons);
     }
 
-    return <>
+    return <div className="resource-display">
         {output}
-    </>;
+    </div>;
 }
 
 export default ResourceDisplay;

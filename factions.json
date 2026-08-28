@@ -965,7 +965,10 @@
                     "name": "Polyutility Components",
                     "upgrade-name": "Adaptive Architecture",
                     "converters": [
-
+                        {
+                            "inputs": "",
+                            "outputs": ["1s", "1C"]
+                        }
                     ]
                 }
             ]
