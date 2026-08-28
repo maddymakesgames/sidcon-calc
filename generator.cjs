@@ -324,4 +324,4 @@ for(let [species, species_data] of Object.entries(data.species)) {
     factions[`alt-${species}`].tech_cards = faction_cards;
 }
 
-fs.writeFileSync("output.json", JSON.stringify(factions, null, 4));
+fs.writeFileSync("public/output.json", JSON.stringify(factions, null, 4));

@@ -1751,12 +1751,12 @@
         },
         "unity": {
             "upgrade-inputs": {
-                "1ci": "2X-2C",
-                "1ge": "3x-3g",
-                "1nt": "3x-3b",
-                "1qc": "2X-2K",
-                "1ur": "2X-2Y",
-                "1ut": "3x-3w"
+                "1ci": "2A-2C",
+                "1ge": "3a-3g",
+                "1nt": "3a-3b",
+                "1qc": "2A-2K",
+                "1ur": "2A-2Y",
+                "1ut": "3a-3w"
             },
             "outputs": {
                 "1at": ["1K1C1b", "1x"],
